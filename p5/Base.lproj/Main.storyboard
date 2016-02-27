@@ -1,13 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="6211" systemVersion="14A298i" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6204"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Record View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="RecordViewController" customModule="p5" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -15,11 +17,48 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" maximumValue="300" translatesAutoresizingMaskIntoConstraints="NO" id="q2a-3M-zXp">
+                                <rect key="frame" x="167" y="285" width="94" height="29"/>
+                                <connections>
+                                    <action selector="tempoChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Z6b-LS-RWZ"/>
+                                </connections>
+                            </stepper>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="WwS-1e-ZJT">
+                                <rect key="frame" x="62" y="284" width="97" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="97" id="P4P-bg-CF6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="brr-Kc-fOi">
+                                <rect key="frame" x="269" y="285" width="79" height="30"/>
+                                <state key="normal" title="Metronome"/>
+                                <connections>
+                                    <action selector="metronomeStartStopButtonAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="eZ2-uF-sUz"/>
+                                </connections>
+                            </button>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="q2a-3M-zXp" firstAttribute="leading" secondItem="WwS-1e-ZJT" secondAttribute="trailing" constant="8" symbolic="YES" id="56d-Is-eya"/>
+                            <constraint firstItem="brr-Kc-fOi" firstAttribute="leading" secondItem="q2a-3M-zXp" secondAttribute="trailing" constant="8" symbolic="YES" id="8TB-vI-jcr"/>
+                            <constraint firstItem="brr-Kc-fOi" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="Aq0-9o-m33"/>
+                            <constraint firstItem="WwS-1e-ZJT" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="42" id="IOs-Rn-SGa"/>
+                            <constraint firstItem="WwS-1e-ZJT" firstAttribute="bottom" secondItem="q2a-3M-zXp" secondAttribute="bottom" id="a1B-VI-Vt3"/>
+                            <constraint firstItem="q2a-3M-zXp" firstAttribute="top" secondItem="brr-Kc-fOi" secondAttribute="top" id="dUv-1t-Vpf"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="metronomeStartStopButton" destination="brr-Kc-fOi" id="hk2-7h-meB"/>
+                        <outlet property="tempoStepper" destination="q2a-3M-zXp" id="xAd-Xg-p0F"/>
+                        <outlet property="tempoTextField" destination="WwS-1e-ZJT" id="nI6-ji-CSP"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="150" y="277"/>
         </scene>
     </scenes>
 </document>

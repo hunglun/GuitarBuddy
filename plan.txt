@@ -1,0 +1,27 @@
+Assets
+1 http://www.istockphoto.com
+2 http://99designs.com.sg
+3 https://www.fiverr.com/categories/graphics-design
+
+App store
+https://www.udacity.com/course/viewer#!/c-ud607-nd/l-4166808608/m-4189249174
+
+If you plan to submit your app to the App Store, then there are a few things you'll need to prepare before doing so. They're listed below, and we'll talk about how to go about preparing them in the next sections:
+
+Assets (Icons, screen shots, description prose, launch image)
+Certificate
+App ID
+Provisioning profile
+Archive
+
+Potential partner:
+William
+
+Sprint 1 MVP
+1. Metronome functionality 5h [3h] DONE
+2. Record 3h
+3. Publish 5h
+4. Gallery of records 3h
+
+[1] start/stop
+29th Feb Midnight
