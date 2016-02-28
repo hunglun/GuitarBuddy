@@ -55,7 +55,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbD-KG-x53">
-                                <rect key="frame" x="302" y="229" width="46" height="30"/>
+                                <rect key="frame" x="302" y="231" width="46" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="46" id="PhQ-7A-mFs"/>
                                 </constraints>
@@ -77,7 +77,7 @@
                             <constraint firstItem="cTE-T7-RzB" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="166" id="dOT-h2-YTw"/>
                             <constraint firstItem="q2a-3M-zXp" firstAttribute="top" secondItem="brr-Kc-fOi" secondAttribute="top" id="dUv-1t-Vpf"/>
                             <constraint firstItem="q2a-3M-zXp" firstAttribute="leading" secondItem="42x-qT-pCu" secondAttribute="trailing" constant="15" id="r9h-AW-k2i"/>
-                            <constraint firstItem="zbD-KG-x53" firstAttribute="baseline" secondItem="SyT-5P-GTE" secondAttribute="baseline" constant="-2" id="tmR-EI-eFr"/>
+                            <constraint firstItem="zbD-KG-x53" firstAttribute="baseline" secondItem="SyT-5P-GTE" secondAttribute="baseline" id="tmR-EI-eFr"/>
                             <constraint firstItem="SyT-5P-GTE" firstAttribute="leading" secondItem="cTE-T7-RzB" secondAttribute="trailing" constant="19" id="z1I-A7-v6d"/>
                         </constraints>
                     </view>

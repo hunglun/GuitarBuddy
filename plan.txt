@@ -19,12 +19,10 @@ William
 
 Sprint 1 MVP
 1. Metronome functionality 5h [3h] DONE
-2. Record 3h
+2. Record 3h [1.5h] DONE
 3. Publish 5h
 4. Gallery of records 3h
 
-
-2.
 
 Features
 tempo persists in record view

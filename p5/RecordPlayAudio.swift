@@ -9,35 +9,44 @@
 import UIKit
 import AVFoundation
 
-//Declared Globally
-var audioRecorder:AVAudioRecorder!
 
+extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate {
 
-extension RecordViewController:  AVAudioRecorderDelegate {
+    func configureButtonsWhenReady (){
+        recordButton.enabled = true
+        stopRecordingButton.enabled = false
+        playAudioButton.enabled = true
+    }
     
-    
+    func configureButtonsWhenProcessingAudio (){
+        recordButton.enabled = false
+        stopRecordingButton.enabled = true
+        playAudioButton.enabled = false
+    }
+
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             audioPlayer = try? AVAudioPlayer(contentsOfURL: recorder.url)
+            audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
-            
-            recordButton.enabled = true
-            stopRecordingButton.enabled = false
-            playAudioButton.enabled = true
-            
-            
+            configureButtonsWhenReady()
         }
     }
-    
+    func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
+        if flag {
+            configureButtonsWhenReady()
+        }
+    }
+
     @IBAction func playAudio(sender : UIButton){
+        configureButtonsWhenProcessingAudio()
         audioPlayer.play()
     }
     
     @IBAction func recordAudio(sender: AnyObject) {
         
-        stopRecordingButton.enabled = true
-        recordButton.enabled = false
-        
+        configureButtonsWhenProcessingAudio()
+
         //Inside func recordAudio(sender: UIButton)
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let recordingName = "p5.wav"
@@ -61,23 +70,14 @@ extension RecordViewController:  AVAudioRecorderDelegate {
     
     @IBAction func stopRecording(sender: AnyObject) {
         //Inside func stopAudio(sender: UIButton)
-        recordButton.enabled = true
+        configureButtonsWhenReady()
         audioRecorder.stop()
+        audioPlayer?.stop()
         let audioSession = AVAudioSession.sharedInstance()
         try! audioSession.setActive(false)
         
     }
     
-
-/*
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "stopRecording" {
-            // use force unwrapping of Optional, because the values are defined in audioRecorderDidFinishRecording.
-            let  playSoundsVC: PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
-            playSoundsVC.receivedAudio = sender as! RecordedAudio
-        }
-    }
-  */
 
     
     

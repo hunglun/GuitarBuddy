@@ -15,6 +15,7 @@ class RecordViewController : UIViewController {
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet var playAudioButton: UIButton!
     var audioPlayer: AVAudioPlayer!
+    var audioRecorder:AVAudioRecorder!
 
     //metronome
     @IBOutlet var metronomeStartStopButton: UIButton!

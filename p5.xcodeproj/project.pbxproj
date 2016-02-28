@@ -67,10 +67,10 @@
 		FA8FD9791C7F382B006380F1 /* p5 */ = {
 			isa = PBXGroup;
 			children = (
-				FA970D721C81DBBF00E9EFCB /* Metronome */,
 				FA8FD97E1C7F382B006380F1 /* Main.storyboard */,
-				FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */,
 				FA970D751C829F8F00E9EFCB /* Recorder */,
+				FA970D721C81DBBF00E9EFCB /* Metronome */,
+				FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */,
 				FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */,
 				FA8FD9841C7F382B006380F1 /* Assets.xcassets */,
 				FA8FD9861C7F382B006380F1 /* LaunchScreen.storyboard */,
