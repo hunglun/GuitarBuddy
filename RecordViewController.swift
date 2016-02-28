@@ -50,19 +50,5 @@ class RecordViewController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func metronomeStartStopButtonAction(sender: UIButton) {
-        metronomeStartStopState =  !metronomeStartStopState
-        if metronomeStartStopState == true {
-            metronome.start(tempo)
-        }else {
-            metronome.stop()
-        }
-        
-    }
-
-    @IBAction func tempoChanged(tempoStepper: UIStepper) {
-        // Save the new tempo.
-        tempo = tempoStepper.value
-    }
 }
 

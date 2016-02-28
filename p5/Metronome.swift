@@ -58,5 +58,7 @@ class Metronome : NSObject {
         metronomeSoundPlayer.prepareToPlay()
       
     }
+    
+    
 }
 
