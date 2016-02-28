@@ -16,6 +16,8 @@
 		FA8FD9901C7F3855006380F1 /* plan.txt in Resources */ = {isa = PBXBuildFile; fileRef = FA8FD98F1C7F3855006380F1 /* plan.txt */; };
 		FA8FD9921C81B1FA006380F1 /* RecordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */; };
 		FA8FD9941C81C99B006380F1 /* metronomeClick.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = FA8FD9931C81C99B006380F1 /* metronomeClick.mp3 */; };
+		FA970D741C829EF400E9EFCB /* RecordPlayAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D731C829EF400E9EFCB /* RecordPlayAudio.swift */; };
+		FA970D771C829FCD00E9EFCB /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -30,6 +32,8 @@
 		FA8FD98F1C7F3855006380F1 /* plan.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = plan.txt; sourceTree = "<group>"; };
 		FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = RecordViewController.swift; path = ../RecordViewController.swift; sourceTree = "<group>"; };
 		FA8FD9931C81C99B006380F1 /* metronomeClick.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = metronomeClick.mp3; sourceTree = "<group>"; };
+		FA970D731C829EF400E9EFCB /* RecordPlayAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPlayAudio.swift; sourceTree = "<group>"; };
+		FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +70,7 @@
 				FA970D721C81DBBF00E9EFCB /* Metronome */,
 				FA8FD97E1C7F382B006380F1 /* Main.storyboard */,
 				FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */,
+				FA970D751C829F8F00E9EFCB /* Recorder */,
 				FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */,
 				FA8FD9841C7F382B006380F1 /* Assets.xcassets */,
 				FA8FD9861C7F382B006380F1 /* LaunchScreen.storyboard */,
@@ -82,6 +87,15 @@
 				FA8FD9931C81C99B006380F1 /* metronomeClick.mp3 */,
 			);
 			name = Metronome;
+			sourceTree = "<group>";
+		};
+		FA970D751C829F8F00E9EFCB /* Recorder */ = {
+			isa = PBXGroup;
+			children = (
+				FA970D731C829EF400E9EFCB /* RecordPlayAudio.swift */,
+				FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */,
+			);
+			name = Recorder;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -157,9 +171,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA970D771C829FCD00E9EFCB /* RecordedAudio.swift in Sources */,
 				FA8FD97D1C7F382B006380F1 /* Metronome.swift in Sources */,
 				FA8FD97B1C7F382B006380F1 /* AppDelegate.swift in Sources */,
 				FA8FD9831C7F382B006380F1 /* p5.xcdatamodeld in Sources */,
+				FA970D741C829EF400E9EFCB /* RecordPlayAudio.swift in Sources */,
 				FA8FD9921C81B1FA006380F1 /* RecordViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,26 +7,41 @@
 //
 
 import UIKit
-
+import AVFoundation
 class RecordViewController : UIViewController {
-    
+
+    //recorder
+    @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet var playAudioButton: UIButton!
+    var audioPlayer: AVAudioPlayer!
+
+    //metronome
     @IBOutlet var metronomeStartStopButton: UIButton!
-    @IBOutlet weak var tempoTextField: UITextField!
+    @IBOutlet weak var tempoLabel: UILabel!
     @IBOutlet weak var tempoStepper: UIStepper!
     var metronomeStartStopState: Bool!
     var metronome : Metronome!
     var tempo: NSTimeInterval = 40 {
         didSet {
-            tempoTextField.text = String(format: "%.0f", tempo)
+            tempoLabel.text = String(format: "%.0f", tempo)
             tempoStepper.value = Double(tempo)
         }
     }
+    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+
+        //metronome
         metronomeStartStopState = false
         metronome = Metronome()
         tempo = 40
+
+        //recorder
+        stopRecordingButton.enabled = false
+        recordButton.enabled = true
+        playAudioButton.enabled = false
     }
     
     override func didReceiveMemoryWarning() {
@@ -48,6 +63,5 @@ class RecordViewController : UIViewController {
         // Save the new tempo.
         tempo = tempoStepper.value
     }
-
 }
 

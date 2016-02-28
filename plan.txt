@@ -23,5 +23,12 @@ Sprint 1 MVP
 3. Publish 5h
 4. Gallery of records 3h
 
-[1] start/stop
+
+2.
+
+Features
+tempo persists in record view
+RecordView has back and next navigation button to traverse to neighbouring songs quickly
+
+Bugs
 29th Feb Midnight
