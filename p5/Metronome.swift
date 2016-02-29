@@ -31,7 +31,7 @@ class Metronome : NSObject {
 
     func start(tempo : NSTimeInterval){
         // Start the metronome.
-        skipCounter = 1
+        skipCounter = 2
         let metronomeTimeInterval:NSTimeInterval = 60.0 / tempo
         
         metronomeTimer = NSTimer.scheduledTimerWithTimeInterval(metronomeTimeInterval, target: self, selector: Selector("playMetronomeSound"), userInfo: nil, repeats: true)

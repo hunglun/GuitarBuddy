@@ -26,6 +26,12 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
 
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: .DefaultToSpeaker)
+            } catch let error as NSError {
+                print(error.localizedDescription)
+            }
+
             audioPlayer = try? AVAudioPlayer(contentsOfURL: recorder.url)
             audioPlayer.delegate = self
             audioPlayer.prepareToPlay()

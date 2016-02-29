@@ -23,10 +23,22 @@ Sprint 1 MVP
 3. Publish 5h
 4. Gallery of records 3h
 
+[3]
+learn how to use custom uri scheme [1h]
+authentication soundcloud. [1h]
+upload [1h]
+
+client id : fdf75eddcd987c3e6beb9b3a47925633
+client secret: dfd72e17039500100a3b5bd0be3cb9b0
+end user authroisation : https://soundcloud.com/connect
+token : https://api.soundcloud.com/oauth2/token
+
+29th Feb Midnight
 
 Features
 tempo persists in record view
 RecordView has back and next navigation button to traverse to neighbouring songs quickly
 
 Bugs
-29th Feb Midnight
+When iPhone goes to sleep mode, the metronome produces no sound.
+
