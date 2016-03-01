@@ -75,11 +75,6 @@ class Soundcloud : NSObject {
                 authenticateCallbackHandler(false,errorString: "Bad Connection")
                 return
             }
-            //                print(response)
-            //                print(error)
-            
-            var newData = data!.subdataWithRange(NSMakeRange(0, data!.length)) /* subset response data! */
-            print(NSString(data: newData, encoding: NSUTF8StringEncoding))
             print(NSString(data: data!, encoding: NSUTF8StringEncoding))
             do {
                 if let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? NSDictionary,
@@ -115,6 +110,38 @@ class Soundcloud : NSObject {
         
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
+    func getTracks(completionHandler: (result: [SCTrack]?, error: NSError?) -> Void) {
+        var track = SCTrack()
+//        Soundcloud.connect()
+        track.title = "Hello"
+        
+        completionHandler( result:[track],error:nil)
+/*
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let parameters = [TMDBClient.ParameterKeys.SessionID: TMDBClient.sharedInstance().sessionID!]
+        var mutableMethod : String = Methods.AccountIDFavoriteMovies
+        mutableMethod = TMDBClient.subtituteKeyInMethod(mutableMethod, key: TMDBClient.URLKeys.UserID, value: String(TMDBClient.sharedInstance().userID!))!
+        
+        /* 2. Make the request */
+        taskForGETMethod(mutableMethod, parameters: parameters) { JSONResult, error in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                completionHandler(result: nil, error: error)
+            } else {
+                
+                if let results = JSONResult[TMDBClient.JSONResponseKeys.MovieResults] as? [[String : AnyObject]] {
+                    
+                    let movies = TMDBMovie.moviesFromResults(results)
+                    completionHandler(result: movies, error: nil)
+                } else {
+                    completionHandler(result: nil, error: NSError(domain: "getFavoriteMovies parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getFavoriteMovies"]))
+                }
+            }
+        }
+*/
+    }
+    
 
     func warningAlertView(parent : UIViewController, messageString : String) -> UIAlertController{
         let alert = UIAlertController(title: "", message: messageString, preferredStyle: .Alert)

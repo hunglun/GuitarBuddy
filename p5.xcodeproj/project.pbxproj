@@ -21,6 +21,8 @@
 		FA970D741C829EF400E9EFCB /* RecordPlayAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D731C829EF400E9EFCB /* RecordPlayAudio.swift */; };
 		FA970D771C829FCD00E9EFCB /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */; };
 		FA970D791C82B68700E9EFCB /* MetronomeSubviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D781C82B68700E9EFCB /* MetronomeSubviewcontroller.swift */; };
+		FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */; };
+		FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5721C8629B700B5DD78 /* SCTrack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -40,6 +42,8 @@
 		FA970D731C829EF400E9EFCB /* RecordPlayAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPlayAudio.swift; sourceTree = "<group>"; };
 		FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		FA970D781C82B68700E9EFCB /* MetronomeSubviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeSubviewcontroller.swift; sourceTree = "<group>"; };
+		FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewController.swift; sourceTree = "<group>"; };
+		FAC3C5721C8629B700B5DD78 /* SCTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCTrack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +62,7 @@
 			children = (
 				FA36D7741C8473A800F2AC7D /* Soundcloud.swift */,
 				FA36D7761C8473A800F2AC7D /* Convenience.swift */,
+				FAC3C5721C8629B700B5DD78 /* SCTrack.swift */,
 			);
 			name = Soundcloud;
 			sourceTree = "<group>";
@@ -83,10 +88,10 @@
 			isa = PBXGroup;
 			children = (
 				FA8FD97E1C7F382B006380F1 /* Main.storyboard */,
+				FAC3C56F1C86286A00B5DD78 /* Controller */,
 				FA36D7731C84737000F2AC7D /* Soundcloud */,
 				FA970D751C829F8F00E9EFCB /* Recorder */,
 				FA970D721C81DBBF00E9EFCB /* Metronome */,
-				FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */,
 				FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */,
 				FA8FD9841C7F382B006380F1 /* Assets.xcassets */,
 				FA8FD9861C7F382B006380F1 /* LaunchScreen.storyboard */,
@@ -113,6 +118,15 @@
 				FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */,
 			);
 			name = Recorder;
+			sourceTree = "<group>";
+		};
+		FAC3C56F1C86286A00B5DD78 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */,
+				FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */,
+			);
+			name = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -197,6 +211,8 @@
 				FA970D741C829EF400E9EFCB /* RecordPlayAudio.swift in Sources */,
 				FA8FD9921C81B1FA006380F1 /* RecordViewController.swift in Sources */,
 				FA36D7771C8473A800F2AC7D /* Soundcloud.swift in Sources */,
+				FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */,
+				FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

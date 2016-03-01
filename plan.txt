@@ -53,14 +53,17 @@ Sprint 3
 End 3rd March
 
 ---------------------------------------------------
-1.
-what is the method?
+[2]
+create a table view [DONE]
+create network helper function in soundcloud. [1h]
+get user id via /me method [1h]
+GET	/users/{id}/tracks list of tracks of the user [1h]
+[1]
+what is the method? PUT /users/{id}/tracks/?? [5h]
 use token and a pointer to the record and upload
 check that it appears on soundcloud.
-2.
-create a collection view
-remember the photo gallery? 
-
+http://stackoverflow.com/questions/26617607/example-of-swift-and-a-put-request-for-a-restful-api
+http://www.tutorialspoint.com/http/http_methods.htm
 
 
 Features
