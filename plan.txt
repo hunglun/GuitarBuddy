@@ -17,15 +17,16 @@ Archive
 Potential partner:
 William
 
-Sprint 1 MVP
+---------------------------------------------------
+Sprint 1 MVP [50% completed]
 1. Metronome functionality 5h [3h] DONE
 2. Record 3h [1.5h] DONE
 3. Publish 5h
 4. Gallery of records 3h
 
 [3]
-learn how to use custom uri scheme [1h]
-authentication soundcloud. [1h]
+learn how to use custom uri scheme [1h -> 15min] DONE
+authentication soundcloud. [1h -> 6h!]
 upload [1h]
 
 client id : fdf75eddcd987c3e6beb9b3a47925633
@@ -34,6 +35,21 @@ end user authroisation : https://soundcloud.com/connect
 token : https://api.soundcloud.com/oauth2/token
 
 29th Feb Midnight
+
+---------------------------------------------------
+
+Sprint 2 DONE
+1. OAuth with Soundcloud. [15min]
+
+Optional({"access_token":"1-182209-4793009-f9e477d058e6b69","scope":"non-expiring"})
+
+I actually spent time (2 hours) in office to study OAuth specs!
+
+End 1st March (OK)
+---------------------------------------------------
+
+
+
 
 Features
 tempo persists in record view

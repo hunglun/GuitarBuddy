@@ -12,7 +12,7 @@ class Soundcloud : NSObject {
     var firstName : String!
     var lastName : String!
     var userId : String!
-    
+    var code : String!
 
     let signUpURL = "https://www.google.com/url?q=https://www.udacity.com/account/auth%23!/signin&sa=D&ust=1452592175802000&usg=AFQjCNF4P-G8QbOSHdZPa1TAOB4wnzzDVQ"
 
@@ -25,6 +25,7 @@ class Soundcloud : NSObject {
         
         return alert
     }
+
     // MARK: Shared Instance
     func getStudentLocations(controller : UIViewController, completeHandler : (()->Void)?) {
         let requestString = "https://api.parse.com/1/classes/StudentLocation?limit=100&order=-updatedAt"

@@ -59,8 +59,8 @@
 			isa = PBXGroup;
 			children = (
 				FA36D7741C8473A800F2AC7D /* Soundcloud.swift */,
-				FA36D7751C8473A800F2AC7D /* TrackModel.swift */,
 				FA36D7761C8473A800F2AC7D /* Convenience.swift */,
+				FA36D7751C8473A800F2AC7D /* TrackModel.swift */,
 			);
 			name = Soundcloud;
 			sourceTree = "<group>";

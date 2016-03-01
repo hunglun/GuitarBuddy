@@ -17,7 +17,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject) -> Bool {
         print("Calling Application Bundle ID: \(sourceApplication)")
         print("URL scheme: \(url)")
-//        print("URL query: ", [url query]);
+        
+        if let query = url.query?.componentsSeparatedByString("&")[0] {
+            let key = query.componentsSeparatedByString("=")[0]
+            let value = query.componentsSeparatedByString("=")[1]
+            if (key == "code") {
+                Soundcloud.sharedInstance().code = value
+                Soundcloud.authenticate()                
+            }
+        
+        }
         
         return true
     }

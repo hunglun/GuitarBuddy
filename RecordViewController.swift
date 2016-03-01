@@ -50,5 +50,8 @@ class RecordViewController : UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    @IBAction func publishButtonTouchUpInside(sender: UIButton) {
+        Soundcloud.connect()
+    }
 }
 
