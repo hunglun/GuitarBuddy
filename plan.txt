@@ -47,7 +47,19 @@ I actually spent time (2 hours) in office to study OAuth specs!
 
 End 1st March (OK)
 ---------------------------------------------------
+Sprint 3
+1. publish a record
+2. shows a gallery of records in a collection view
+End 3rd March
 
+---------------------------------------------------
+1.
+what is the method?
+use token and a pointer to the record and upload
+check that it appears on soundcloud.
+2.
+create a collection view
+remember the photo gallery? 
 
 
 

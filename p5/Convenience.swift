@@ -9,9 +9,7 @@
 import UIKit
 import SystemConfiguration
 
-let SoundcloudSecureBaseUrl = "https://api.soundcloud.com"
-let clientId = "fdf75eddcd987c3e6beb9b3a47925633"
-let clientSecret = "dfd72e17039500100a3b5bd0be3cb9b0"
+
 /*
 client_id	string	The client id belonging to your application
 redirect_uri	string	The redirect uri you have configured for your application
@@ -21,26 +19,6 @@ display	string	Can specify a value of 'popup' for mobile optimized screen
 state	string	Any value included here will be appended to the redirect URI
 */
 extension Soundcloud {
-
-    class func escapedParameters(parameters: [String : AnyObject]) -> String {
-        
-        var urlVars = [String]()
-        
-        for (key, value) in parameters {
-            
-            /* Make sure that it is a string value */
-            let stringValue = "\(value)"
-            
-            /* Escape it */
-            let escapedValue = stringValue.stringByAddingPercentEncodingWithAllowedCharacters(NSCharacterSet.URLQueryAllowedCharacterSet())
-            
-            /* Append it */
-            urlVars += [key + "=" + "\(escapedValue!)"]
-            
-        }
-        
-        return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
-    }
 
     
     func httpGetUdacityUserInfo(userId : String , errorHandler: (errroString : String) -> Void,
@@ -179,71 +157,7 @@ extension Soundcloud {
         
         return canReach;
     }
-    class func authenticateCallbackHandler(success: Bool, errorString: String?)-> Void{
-        if success {
-            print("Authentication successful!")
-        }else{
-            print(errorString)
-        }
-    }
-    class func connect(){
-        // connect
-        var parameters = [String:String]()
-        parameters["client_id"] = clientId
-        parameters["redirect_uri"] = "guitarbuddy://soundcloud/connectCallback"
-        parameters["response_type"] = "code"
-        parameters["display"] = "popup"
-        parameters["state"] = ""
-        parameters["scope"] = "non-expiring"
-        
-        let urlString = "https://soundcloud.com/connect" + Soundcloud.escapedParameters(parameters)
-        print (urlString)
-        let url = NSURL(string: urlString)!
-        UIApplication.sharedApplication().openURL(url)
-        
-        
-    }
-    class func authenticate(){
 
-            var parameters = [String:String]()
-            parameters["client_id"] = clientId
-            parameters["client_secret"] = clientSecret
-            parameters["redirect_uri"] = "guitarbuddy://soundcloud/connectCallback"
-            parameters["grant_type"] = "authorization_code"
-            parameters["code"] = Soundcloud.sharedInstance().code
-
-            let urlString = "https://api.soundcloud.com/oauth2/token"
-            print(urlString)
-            let request = NSMutableURLRequest(URL: NSURL(string: urlString)!)
-
-            var post: String = escapedParameters(parameters)
-            // Remark : THIS STEP IS THE KEY, drop the ? character.
-            post = String(post.characters.dropFirst())
-            let postData: NSData = post.dataUsingEncoding(NSASCIIStringEncoding, allowLossyConversion: true)!
-//            let postLength: String = "\(postData.length)"
-//            request.setValue(postLength, forHTTPHeaderField: "Content-Length")
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.addValue("application/json", forHTTPHeaderField: "Accept")
-            request.HTTPMethod = "POST"
-            request.HTTPBody = postData
-//            print(post)
-//            print(request)
-            let session = NSURLSession.sharedSession()
-            let task = session.dataTaskWithRequest(request) { data, response, error in
-                if error != nil { // Handle error…
-                    authenticateCallbackHandler(false,errorString: "Bad Connection")
-                    return
-                }
-//                print(response)
-//                print(error)
-                
-                var newData = data!.subdataWithRange(NSMakeRange(0, data!.length)) /* subset response data! */
-                print(NSString(data: newData, encoding: NSUTF8StringEncoding))
-
-            }
-            task.resume()
-
-        }
     
     func logout(controller: UIViewController){
     

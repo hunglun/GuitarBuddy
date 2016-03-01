@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		FA36D7771C8473A800F2AC7D /* Soundcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36D7741C8473A800F2AC7D /* Soundcloud.swift */; };
-		FA36D7781C8473A800F2AC7D /* TrackModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36D7751C8473A800F2AC7D /* TrackModel.swift */; };
 		FA36D7791C8473A800F2AC7D /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36D7761C8473A800F2AC7D /* Convenience.swift */; };
 		FA8FD97B1C7F382B006380F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */; };
 		FA8FD97D1C7F382B006380F1 /* Metronome.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FD97C1C7F382B006380F1 /* Metronome.swift */; };
@@ -26,7 +25,6 @@
 
 /* Begin PBXFileReference section */
 		FA36D7741C8473A800F2AC7D /* Soundcloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Soundcloud.swift; sourceTree = "<group>"; };
-		FA36D7751C8473A800F2AC7D /* TrackModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrackModel.swift; sourceTree = "<group>"; };
 		FA36D7761C8473A800F2AC7D /* Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		FA8FD9771C7F382B006380F1 /* p5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = p5.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -60,7 +58,6 @@
 			children = (
 				FA36D7741C8473A800F2AC7D /* Soundcloud.swift */,
 				FA36D7761C8473A800F2AC7D /* Convenience.swift */,
-				FA36D7751C8473A800F2AC7D /* TrackModel.swift */,
 			);
 			name = Soundcloud;
 			sourceTree = "<group>";
@@ -193,7 +190,6 @@
 			files = (
 				FA970D771C829FCD00E9EFCB /* RecordedAudio.swift in Sources */,
 				FA36D7791C8473A800F2AC7D /* Convenience.swift in Sources */,
-				FA36D7781C8473A800F2AC7D /* TrackModel.swift in Sources */,
 				FA970D791C82B68700E9EFCB /* MetronomeSubviewcontroller.swift in Sources */,
 				FA8FD97D1C7F382B006380F1 /* Metronome.swift in Sources */,
 				FA8FD97B1C7F382B006380F1 /* AppDelegate.swift in Sources */,
