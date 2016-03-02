@@ -13,7 +13,7 @@ import UIKit
 class Soundcloud : NSObject {
     var firstName : String!
     var lastName : String!
-    var userId : String!
+    var userId : String?
     var code : String?
     var accessToken : String?
     let SoundcloudSecureBaseUrl = "https://api.soundcloud.com"
@@ -80,6 +80,7 @@ class Soundcloud : NSObject {
                 if let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? NSDictionary,
                     accessToken = parsedResult["access_token"] as? String{
                         Soundcloud.sharedInstance().accessToken = accessToken
+                        Soundcloud.sharedInstance().getUserId(){_,_ in }
                 }else{
                     print("Invalid JSON Object")
                 }
@@ -110,17 +111,13 @@ class Soundcloud : NSObject {
         
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
-    func getTracks(completionHandler: (result: [SCTrack]?, error: NSError?) -> Void) {
-        var track = SCTrack()
-//        Soundcloud.connect()
-        track.title = "Hello"
+    func getUserId(completionHandler: (result: String?, error: NSError?) -> Void) {
+        //TODO :
+        accessToken = Soundcloud.sharedInstance().accessToken ?? "1-182209-4793009-f9e477d058e6b69"
         
-        completionHandler( result:[track],error:nil)
-/*
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [TMDBClient.ParameterKeys.SessionID: TMDBClient.sharedInstance().sessionID!]
-        var mutableMethod : String = Methods.AccountIDFavoriteMovies
-        mutableMethod = TMDBClient.subtituteKeyInMethod(mutableMethod, key: TMDBClient.URLKeys.UserID, value: String(TMDBClient.sharedInstance().userID!))!
+        let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
+        let mutableMethod : String = Soundcloud.Methods.UserProfile
         
         /* 2. Make the request */
         taskForGETMethod(mutableMethod, parameters: parameters) { JSONResult, error in
@@ -130,18 +127,54 @@ class Soundcloud : NSObject {
                 completionHandler(result: nil, error: error)
             } else {
                 
-                if let results = JSONResult[TMDBClient.JSONResponseKeys.MovieResults] as? [[String : AnyObject]] {
-                    
-                    let movies = TMDBMovie.moviesFromResults(results)
-                    completionHandler(result: movies, error: nil)
+                if let result = JSONResult[JSONResponseKeys.UserID] as? Int {
+                    Soundcloud.sharedInstance().userId = "\(result)"
+                    completionHandler(result: Soundcloud.sharedInstance().userId, error: nil)
                 } else {
-                    completionHandler(result: nil, error: NSError(domain: "getFavoriteMovies parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getFavoriteMovies"]))
+                    completionHandler(result: nil, error: NSError(domain: "get tracks parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getTracks"]))
                 }
             }
         }
-*/
+        
     }
-    
+    func getTracks(completionHandler: (result: [SCTrack]?, error: NSError?) -> Void) {
+        //TODO :
+        userId = Soundcloud.sharedInstance().userId ?? "4793009"
+        accessToken = Soundcloud.sharedInstance().accessToken ?? "1-182209-4793009-f9e477d058e6b69"
+        
+        /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
+        let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
+        var mutableMethod : String = Soundcloud.Methods.UserIdTracks
+        mutableMethod = Soundcloud.subtituteKeyInMethod(mutableMethod, key: Soundcloud.URLKeys.UserID, value: String(userId!))!
+        
+        /* 2. Make the request */
+        taskForGETMethod(mutableMethod, parameters: parameters) { JSONResult, error in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                completionHandler(result: nil, error: error)
+            } else {
+                
+                if let results = JSONResult as? [[String : AnyObject]] {
+                    
+                    let tracks = SCTrack.tracksFromResults(results)
+                    completionHandler(result: tracks, error: nil)
+                } else {
+                    completionHandler(result: nil, error: NSError(domain: "get tracks parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getTracks"]))
+                }
+            }
+        }
+
+    }
+    /* Helper: Substitute the key for the value that is contained within the method name */
+    class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
+        if method.rangeOfString("{\(key)}") != nil {
+            return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
+        } else {
+            return nil
+        }
+    }
+
 
     func warningAlertView(parent : UIViewController, messageString : String) -> UIAlertController{
         let alert = UIAlertController(title: "", message: messageString, preferredStyle: .Alert)
@@ -153,8 +186,8 @@ class Soundcloud : NSObject {
         return alert
     }
 
-
-
+    
+    
     class func sharedInstance() -> Soundcloud {
         
         struct Singleton {

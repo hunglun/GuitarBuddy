@@ -14,7 +14,6 @@ import UIKit
 class SoundTableViewController: UIViewController {
     
     // MARK: Properties
-    
     var tracks: [SCTrack] = [SCTrack]()
     
     @IBOutlet weak var tracksTableView: UITableView!
@@ -23,7 +22,8 @@ class SoundTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+
         /* Create and set the logout button */
 //        self.parentViewController!.navigationItem.leftBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Reply, target: self, action: "logoutButtonTouchUp")
     }

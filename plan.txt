@@ -49,19 +49,21 @@ End 1st March (OK)
 ---------------------------------------------------
 Sprint 3
 1. publish a record
-2. shows a gallery of records in a collection view
+2. shows a gallery of records in a collection view [DONE]
 End 3rd March
 
 ---------------------------------------------------
 [2]
 create a table view [DONE]
-create network helper function in soundcloud. [1h]
-get user id via /me method [1h]
-GET	/users/{id}/tracks list of tracks of the user [1h]
+create network helper function in soundcloud. [1h] [DONE]
+get user id via /me method [15min -> 30min] [DONE]
+GET	/users/{id}/tracks list of tracks of the user [1h] [DONE]
 [1]
-what is the method? PUT /users/{id}/tracks/?? [5h]
+navigate between 2 views easily [1h]
+upload a track to soundcloud [5h]
+
+what is the method? PUT /users/{id}/tracks/??
 use token and a pointer to the record and upload
-check that it appears on soundcloud.
 http://stackoverflow.com/questions/26617607/example-of-swift-and-a-put-request-for-a-restful-api
 http://www.tutorialspoint.com/http/http_methods.htm
 

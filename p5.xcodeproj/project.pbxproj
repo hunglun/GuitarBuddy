@@ -23,6 +23,8 @@
 		FA970D791C82B68700E9EFCB /* MetronomeSubviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D781C82B68700E9EFCB /* MetronomeSubviewcontroller.swift */; };
 		FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */; };
 		FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5721C8629B700B5DD78 /* SCTrack.swift */; };
+		FAC3C5751C86540E00B5DD78 /* SCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5741C86540E00B5DD78 /* SCConstants.swift */; };
+		FAC3C5771C8655B100B5DD78 /* SCHttpRequestHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5761C8655B100B5DD78 /* SCHttpRequestHelper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		FA970D781C82B68700E9EFCB /* MetronomeSubviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeSubviewcontroller.swift; sourceTree = "<group>"; };
 		FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewController.swift; sourceTree = "<group>"; };
 		FAC3C5721C8629B700B5DD78 /* SCTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCTrack.swift; sourceTree = "<group>"; };
+		FAC3C5741C86540E00B5DD78 /* SCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCConstants.swift; sourceTree = "<group>"; };
+		FAC3C5761C8655B100B5DD78 /* SCHttpRequestHelper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCHttpRequestHelper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,7 +65,9 @@
 			isa = PBXGroup;
 			children = (
 				FA36D7741C8473A800F2AC7D /* Soundcloud.swift */,
+				FAC3C5761C8655B100B5DD78 /* SCHttpRequestHelper.swift */,
 				FA36D7761C8473A800F2AC7D /* Convenience.swift */,
+				FAC3C5741C86540E00B5DD78 /* SCConstants.swift */,
 				FAC3C5721C8629B700B5DD78 /* SCTrack.swift */,
 			);
 			name = Soundcloud;
@@ -205,12 +211,14 @@
 				FA970D771C829FCD00E9EFCB /* RecordedAudio.swift in Sources */,
 				FA36D7791C8473A800F2AC7D /* Convenience.swift in Sources */,
 				FA970D791C82B68700E9EFCB /* MetronomeSubviewcontroller.swift in Sources */,
+				FAC3C5751C86540E00B5DD78 /* SCConstants.swift in Sources */,
 				FA8FD97D1C7F382B006380F1 /* Metronome.swift in Sources */,
 				FA8FD97B1C7F382B006380F1 /* AppDelegate.swift in Sources */,
 				FA8FD9831C7F382B006380F1 /* p5.xcdatamodeld in Sources */,
 				FA970D741C829EF400E9EFCB /* RecordPlayAudio.swift in Sources */,
 				FA8FD9921C81B1FA006380F1 /* RecordViewController.swift in Sources */,
 				FA36D7771C8473A800F2AC7D /* Soundcloud.swift in Sources */,
+				FAC3C5771C8655B100B5DD78 /* SCHttpRequestHelper.swift in Sources */,
 				FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */,
 				FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */,
 			);
