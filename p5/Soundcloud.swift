@@ -139,15 +139,12 @@ class Soundcloud : NSObject {
         let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
         let mutableMethod : String = Soundcloud.Methods.Track
         print(file.path!)
-  //      let check = NSData(contentsOfFile: file.path!)!
-        let jsonBody : [String:AnyObject] = [
+        let jsonBody : [String:String] = [
             Soundcloud.JSONBodyKeys.Title: title,
             Soundcloud.JSONBodyKeys.Sharing: "private",
-//            Soundcloud.JSONBodyKeys.AssetData: NSData(contentsOfFile: file.path!)!
-            Soundcloud.JSONBodyKeys.AssetData: file.path!
         ]
-        
-        taskForPOSTMethod(mutableMethod, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
+        let assetDataPaths = [file.path!]
+        taskForPOSTMethodForFileUpload(mutableMethod, parameters: parameters, jsonBody: jsonBody, filePaths: assetDataPaths) { JSONResult, error in
             
             /* 3. Send the desired value(s) to completion handler */
             if let error = error {

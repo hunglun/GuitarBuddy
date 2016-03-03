@@ -94,7 +94,7 @@ extension Soundcloud {
         }
         return "application/octet-stream";
     }
-    func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    func taskForPOSTMethodForFileUpload(method: String, parameters: [String : AnyObject], jsonBody: [String:String], filePaths : [String]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL and configure the request */
         let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + Soundcloud.escapedParameters(parameters)
@@ -104,19 +104,12 @@ extension Soundcloud {
         print(jsonBody)
         let boundary = generateBoundaryString()
         request.HTTPMethod = "POST"
-//        request.addValue("application/json", forHTTPHeaderField: "Accept")
-//        request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.setValue("multipart/form-data; boundary=\(boundary)", forHTTPHeaderField: "Content-Type")
 
-        let params =     [
-            Soundcloud.JSONBodyKeys.Title: String(jsonBody[Soundcloud.JSONBodyKeys.Title]!) ,
-            Soundcloud.JSONBodyKeys.Sharing: String(jsonBody[Soundcloud.JSONBodyKeys.Sharing]!)
-        ]
         
         do {
-          //  request.HTTPBody = try! NSJSONSerialization.dataWithJSONObject(jsonBody, options: .PrettyPrinted)
-            request.HTTPBody = createBodyWithParameters(params,
-                filePathKey: Soundcloud.JSONBodyKeys.AssetData, paths: [String(jsonBody[Soundcloud.JSONBodyKeys.AssetData]!)], boundary: boundary)
+            request.HTTPBody = createBodyWithParameters(jsonBody,
+                filePathKey: Soundcloud.JSONBodyKeys.AssetData, paths: filePaths, boundary: boundary)
 
             
         }
