@@ -30,13 +30,29 @@ extension Soundcloud {
 
     
     }
+    
+    // MARK: JSON Body Keys
+    struct JSONBodyKeys {
+        
+/*        static let Title = "title"
+        static let Sharing = "sharing"
+        static let AssetData = "asset_data"
+  */
+        static let Title = "track[title]"
+        static let Sharing = "track[sharing]"
+        static let AssetData = "track[asset_data]"
+
+    }
+    
+
     // MARK: Methods
     struct Methods {
         
         // MARK: Account
         static let UserIdTracks = "users/{id}/tracks"
         static let UserProfile = "me"
-        static let AccountIDWatchlistMovies = "account/{id}/watchlist/movies"
+        static let TrackId = "tracks/{id}"
+        static let Track = "tracks"
         static let AccountIDWatchlist = "account/{id}/watchlist"
         
         // MARK: Authentication
@@ -55,6 +71,7 @@ extension Soundcloud {
     struct URLKeys {
         
         static let UserID = "id"
+        static let TrackID = "id"
         
     }
     

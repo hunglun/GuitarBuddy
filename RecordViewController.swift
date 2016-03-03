@@ -16,7 +16,7 @@ class RecordViewController : UIViewController {
     @IBOutlet var playAudioButton: UIButton!
     var audioPlayer: AVAudioPlayer!
     var audioRecorder:AVAudioRecorder!
-
+    var filePath : NSURL?
     //metronome
     @IBOutlet var metronomeStartStopButton: UIButton!
     @IBOutlet weak var tempoLabel: UILabel!
@@ -51,7 +51,15 @@ class RecordViewController : UIViewController {
     }
     
     @IBAction func publishButtonTouchUpInside(sender: UIButton) {
-        Soundcloud.connect()
+        let userId = Soundcloud.sharedInstance().userId //?? "4793009"
+        let accessToken = Soundcloud.sharedInstance().accessToken //?? "1-182209-4793009-f9e477d058e6b69"
+        if userId == nil || accessToken == nil {
+            Soundcloud.connect()
+            return
+        }
+        if let filePath = filePath {
+            Soundcloud.sharedInstance().upload(filePath, title: "TestWav")
+        }
     }
 }
 

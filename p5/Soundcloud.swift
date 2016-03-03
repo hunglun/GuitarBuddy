@@ -80,7 +80,7 @@ class Soundcloud : NSObject {
                 if let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? NSDictionary,
                     accessToken = parsedResult["access_token"] as? String{
                         Soundcloud.sharedInstance().accessToken = accessToken
-                        Soundcloud.sharedInstance().getUserId(){_,_ in }
+                        Soundcloud.sharedInstance().getUserId(accessToken){_,_ in }
                 }else{
                     print("Invalid JSON Object")
                 }
@@ -111,12 +111,70 @@ class Soundcloud : NSObject {
         
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
-    func getUserId(completionHandler: (result: String?, error: NSError?) -> Void) {
-        //TODO :
-        accessToken = Soundcloud.sharedInstance().accessToken ?? "1-182209-4793009-f9e477d058e6b69"
+
+    func upload(file : NSURL, title: String){
+        /*
+        import soundcloud
+        
+        # create a client object with access token
+        client = soundcloud.Client(access_token='YOUR_ACCESS_TOKEN')
+        
+        # upload audio file
+        track = client.post('/tracks', track={
+        'title': 'This is my sound',
+        'asset_data': open('file.mp3', 'rb')
+        })
+        
+        # print track link
+        print track.permalink_url
+        */
+        let accessToken = Soundcloud.sharedInstance().accessToken
+/*
+        track = client.post('/tracks', track={
+            'title': 'This is a sample track',
+            'sharing': 'private',
+            'asset_data': open('5littlemonkeys.mp3', 'rb')
+            })
+*/
+        let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
+        let mutableMethod : String = Soundcloud.Methods.Track
+        print(file.path!)
+  //      let check = NSData(contentsOfFile: file.path!)!
+        let jsonBody : [String:AnyObject] = [
+            Soundcloud.JSONBodyKeys.Title: title,
+            Soundcloud.JSONBodyKeys.Sharing: "private",
+//            Soundcloud.JSONBodyKeys.AssetData: NSData(contentsOfFile: file.path!)!
+            Soundcloud.JSONBodyKeys.AssetData: file.path!
+        ]
+        
+        taskForPOSTMethod(mutableMethod, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
+            
+            /* 3. Send the desired value(s) to completion handler */
+            if let error = error {
+                print("error upload")
+                print(error)
+                //              completionHandler(result: nil, error: error)
+            } else {
+                print(JSONResult)
+                print("success upload")
+    //            completionHandler(result: results, error: nil)
+                
+                /*                if let results = JSONResult[Soundcloud.JSONResponseKeys.StatusCode] as? Int {
+                    completionHandler(result: results, error: nil)
+                } else {
+                    completionHandler(result: nil, error: NSError(domain: "postToFavoritesList parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postToFavoritesList"]))
+                }
+ */           }
+        }
+
+        
+    }
+
+    func getUserId(accessToken : String, completionHandler: (result: String?, error: NSError?) -> Void) {
+//        accessToken = Soundcloud.sharedInstance().accessToken ?? "1-182209-4793009-f9e477d058e6b69"
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
-        let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
+        let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken]
         let mutableMethod : String = Soundcloud.Methods.UserProfile
         
         /* 2. Make the request */
@@ -138,9 +196,13 @@ class Soundcloud : NSObject {
         
     }
     func getTracks(completionHandler: (result: [SCTrack]?, error: NSError?) -> Void) {
-        //TODO :
-        userId = Soundcloud.sharedInstance().userId ?? "4793009"
-        accessToken = Soundcloud.sharedInstance().accessToken ?? "1-182209-4793009-f9e477d058e6b69"
+        
+        userId = Soundcloud.sharedInstance().userId //?? "4793009"
+        accessToken = Soundcloud.sharedInstance().accessToken //?? "1-182209-4793009-f9e477d058e6b69"
+        if userId == nil || accessToken == nil {
+            Soundcloud.connect()
+            return
+        }
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]

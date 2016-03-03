@@ -57,7 +57,7 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
         let recordingName = "p5.wav"
         let pathArray = [dirPath, recordingName]
-        let filePath = NSURL.fileURLWithPathComponents(pathArray)
+        filePath = NSURL.fileURLWithPathComponents(pathArray)
         
         print(filePath)
         
