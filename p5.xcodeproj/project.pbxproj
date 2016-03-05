@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		FA2CBB9F1C8B008700F051A2 /* PracticeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */; };
+		FA2CBBA11C8B099600F051A2 /* PracticeItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBBA01C8B099600F051A2 /* PracticeItemTableViewController.swift */; };
 		FA36D7771C8473A800F2AC7D /* Soundcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36D7741C8473A800F2AC7D /* Soundcloud.swift */; };
 		FA36D7791C8473A800F2AC7D /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36D7761C8473A800F2AC7D /* Convenience.swift */; };
 		FA8FD97B1C7F382B006380F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */; };
@@ -28,6 +30,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItem.swift; sourceTree = "<group>"; };
+		FA2CBBA01C8B099600F051A2 /* PracticeItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItemTableViewController.swift; sourceTree = "<group>"; };
 		FA36D7741C8473A800F2AC7D /* Soundcloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Soundcloud.swift; sourceTree = "<group>"; };
 		FA36D7761C8473A800F2AC7D /* Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		FA8FD9771C7F382B006380F1 /* p5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = p5.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -61,6 +65,26 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		FA2CBB9C1C8B002700F051A2 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				FA2CBB9D1C8B006F00F051A2 /* PracticeItem */,
+				FA970D721C81DBBF00E9EFCB /* Metronome */,
+				FA36D7731C84737000F2AC7D /* Soundcloud */,
+				FA970D751C829F8F00E9EFCB /* Recorder */,
+			);
+			name = Model;
+			path = ..;
+			sourceTree = "<group>";
+		};
+		FA2CBB9D1C8B006F00F051A2 /* PracticeItem */ = {
+			isa = PBXGroup;
+			children = (
+				FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */,
+			);
+			name = PracticeItem;
+			sourceTree = "<group>";
+		};
 		FA36D7731C84737000F2AC7D /* Soundcloud */ = {
 			isa = PBXGroup;
 			children = (
@@ -71,6 +95,7 @@
 				FAC3C5721C8629B700B5DD78 /* SCTrack.swift */,
 			);
 			name = Soundcloud;
+			path = p5;
 			sourceTree = "<group>";
 		};
 		FA8FD96E1C7F382A006380F1 = {
@@ -94,10 +119,8 @@
 			isa = PBXGroup;
 			children = (
 				FA8FD97E1C7F382B006380F1 /* Main.storyboard */,
+				FA2CBB9C1C8B002700F051A2 /* Model */,
 				FAC3C56F1C86286A00B5DD78 /* Controller */,
-				FA36D7731C84737000F2AC7D /* Soundcloud */,
-				FA970D751C829F8F00E9EFCB /* Recorder */,
-				FA970D721C81DBBF00E9EFCB /* Metronome */,
 				FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */,
 				FA8FD9841C7F382B006380F1 /* Assets.xcassets */,
 				FA8FD9861C7F382B006380F1 /* LaunchScreen.storyboard */,
@@ -115,6 +138,7 @@
 				FA8FD9931C81C99B006380F1 /* metronomeClick.mp3 */,
 			);
 			name = Metronome;
+			path = p5;
 			sourceTree = "<group>";
 		};
 		FA970D751C829F8F00E9EFCB /* Recorder */ = {
@@ -124,6 +148,7 @@
 				FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */,
 			);
 			name = Recorder;
+			path = p5;
 			sourceTree = "<group>";
 		};
 		FAC3C56F1C86286A00B5DD78 /* Controller */ = {
@@ -131,6 +156,7 @@
 			children = (
 				FA8FD9911C81B1FA006380F1 /* RecordViewController.swift */,
 				FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */,
+				FA2CBBA01C8B099600F051A2 /* PracticeItemTableViewController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -219,6 +245,8 @@
 				FA8FD9921C81B1FA006380F1 /* RecordViewController.swift in Sources */,
 				FA36D7771C8473A800F2AC7D /* Soundcloud.swift in Sources */,
 				FAC3C5771C8655B100B5DD78 /* SCHttpRequestHelper.swift in Sources */,
+				FA2CBBA11C8B099600F051A2 /* PracticeItemTableViewController.swift in Sources */,
+				FA2CBB9F1C8B008700F051A2 /* PracticeItem.swift in Sources */,
 				FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */,
 				FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */,
 			);

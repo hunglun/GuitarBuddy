@@ -69,7 +69,7 @@ http://stackoverflow.com/questions/26162616/upload-image-with-parameters-in-swif
 ---------------------------------------------------
 Sprint 4
 1 Persist access token [15min -> 60min] DONE
-2 PracticeItemTableViewController [1h]
+2 PracticeItemTableViewController [1h] DONE
   - list all practice items
 3 Create AddPracticeItemViewController [1h]
 4 Record view controller can navigate to the previous or next practice [1h]
