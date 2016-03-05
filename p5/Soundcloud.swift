@@ -15,19 +15,57 @@ class Soundcloud : NSObject {
     var lastName : String!
     var userId : String?
     var code : String?
-    var accessToken : String?
+//    var accessToken : String?
+    var accessToken: String?
     let SoundcloudSecureBaseUrl = "https://api.soundcloud.com"
     let clientId = "fdf75eddcd987c3e6beb9b3a47925633"
     let clientSecret = "dfd72e17039500100a3b5bd0be3cb9b0"
 
-    class func authenticateCallbackHandler(success: Bool, errorString: String?)-> Void{
+    // Here we use the same filePath strategy as the Persistent Master Detail
+    // A convenient property
+    var archiveFilePath : String {
+        let manager = NSFileManager.defaultManager()
+        let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
+        return url.URLByAppendingPathComponent("p5SoundcloudArchive").path!
+    }
+    
+    override init() {
+        super.init()
+        retrieveArchivedItems()
+    }
+    func retrieveArchivedItems() {
+        
+        // if we can unarchive a dictionary, we will use it to set the map back to its
+        // previous center and span
+        if let dict = NSKeyedUnarchiver.unarchiveObjectWithFile(archiveFilePath) as? [String : AnyObject] {
+            
+            accessToken = dict["access_token"] as? String
+            userId = dict["userId"] as? String
+        }
+    }
+    func saveUserAccessInfo() {
+        
+        // Place the "center" and "span" of the map into a dictionary
+        // The "span" is the width and height of the map in degrees.
+        // It represents the zoom level of the map.
+        
+        let dictionary = [
+            "access_token" : accessToken!,
+            "userId" : userId!
+        ]
+        
+        // Archive the dictionary into the filePath
+        NSKeyedArchiver.archiveRootObject(dictionary, toFile: archiveFilePath)
+    }
+
+    func authenticateCallbackHandler(success: Bool, errorString: String?)-> Void{
         if success {
             print("Authentication successful!")
         }else{
             print(errorString)
         }
     }
-    class func connect(){
+    func connect(){
         // connect
         var parameters = [String:String]()
         parameters["client_id"] = Soundcloud.sharedInstance().clientId
@@ -37,14 +75,14 @@ class Soundcloud : NSObject {
         parameters["state"] = ""
         parameters["scope"] = "non-expiring"
         
-        let urlString = "https://soundcloud.com/connect" + Soundcloud.escapedParameters(parameters)
+        let urlString = "https://soundcloud.com/connect" + self.escapedParameters(parameters)
         print (urlString)
         let url = NSURL(string: urlString)!
         UIApplication.sharedApplication().openURL(url)
         
         
     }
-    class func authenticate(){
+    func authenticate(){
         
         var parameters = [String:String]()
         parameters["client_id"] = Soundcloud.sharedInstance().clientId
@@ -72,7 +110,7 @@ class Soundcloud : NSObject {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // Handle error…
-                authenticateCallbackHandler(false,errorString: "Bad Connection")
+                self.authenticateCallbackHandler(false,errorString: "Bad Connection")
                 return
             }
             print(NSString(data: data!, encoding: NSUTF8StringEncoding))
@@ -92,7 +130,8 @@ class Soundcloud : NSObject {
         task.resume()
         
     }
-    class func escapedParameters(parameters: [String : AnyObject]) -> String {
+    
+    func escapedParameters(parameters: [String : AnyObject]) -> String {
         
         var urlVars = [String]()
         
@@ -113,35 +152,14 @@ class Soundcloud : NSObject {
     }
 
     func upload(file : NSURL, title: String){
-        /*
-        import soundcloud
         
-        # create a client object with access token
-        client = soundcloud.Client(access_token='YOUR_ACCESS_TOKEN')
-        
-        # upload audio file
-        track = client.post('/tracks', track={
-        'title': 'This is my sound',
-        'asset_data': open('file.mp3', 'rb')
-        })
-        
-        # print track link
-        print track.permalink_url
-        */
         let accessToken = Soundcloud.sharedInstance().accessToken
-/*
-        track = client.post('/tracks', track={
-            'title': 'This is a sample track',
-            'sharing': 'private',
-            'asset_data': open('5littlemonkeys.mp3', 'rb')
-            })
-*/
         let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
         let mutableMethod : String = Soundcloud.Methods.Track
         print(file.path!)
         let jsonBody : [String:String] = [
             Soundcloud.JSONBodyKeys.Title: title,
-            Soundcloud.JSONBodyKeys.Sharing: "private",
+            Soundcloud.JSONBodyKeys.Sharing: Soundcloud.JSONResponseKeys.Private
         ]
         let assetDataPaths = [file.path!]
         taskForPOSTMethodForFileUpload(mutableMethod, parameters: parameters, jsonBody: jsonBody, filePaths: assetDataPaths) { JSONResult, error in
@@ -183,8 +201,9 @@ class Soundcloud : NSObject {
             } else {
                 
                 if let result = JSONResult[JSONResponseKeys.UserID] as? Int {
-                    Soundcloud.sharedInstance().userId = "\(result)"
-                    completionHandler(result: Soundcloud.sharedInstance().userId, error: nil)
+                    self.userId = "\(result)"
+                    self.saveUserAccessInfo()
+                    completionHandler(result: self.userId, error: nil)
                 } else {
                     completionHandler(result: nil, error: NSError(domain: "get tracks parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getTracks"]))
                 }
@@ -197,7 +216,7 @@ class Soundcloud : NSObject {
         userId = Soundcloud.sharedInstance().userId //?? "4793009"
         accessToken = Soundcloud.sharedInstance().accessToken //?? "1-182209-4793009-f9e477d058e6b69"
         if userId == nil || accessToken == nil {
-            Soundcloud.connect()
+            Soundcloud.sharedInstance().connect()
             return
         }
         

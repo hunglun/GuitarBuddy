@@ -54,7 +54,7 @@ class RecordViewController : UIViewController {
         let userId = Soundcloud.sharedInstance().userId //?? "4793009"
         let accessToken = Soundcloud.sharedInstance().accessToken //?? "1-182209-4793009-f9e477d058e6b69"
         if userId == nil || accessToken == nil {
-            Soundcloud.connect()
+            Soundcloud.sharedInstance().connect()
             return
         }
         if let filePath = filePath {

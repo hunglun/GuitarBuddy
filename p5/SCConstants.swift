@@ -104,6 +104,11 @@ extension Soundcloud {
         static let TrackReleaseYear = "release_year"
         static let TrackResults = "results"
         
+        // MARK: Sharing
+        static let Public = "public"
+        static let Private = "private"
+        
+        
     }
 
     

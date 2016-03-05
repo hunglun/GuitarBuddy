@@ -67,11 +67,32 @@ upload a track to soundcloud [5h] [DONE]
 http://stackoverflow.com/questions/26162616/upload-image-with-parameters-in-swift
 
 ---------------------------------------------------
+Sprint 4
+1 Persist access token [15min -> 60min] DONE
+2 PracticeItemTableViewController [1h]
+  - list all practice items
+3 Create AddPracticeItemViewController [1h]
+4 Record view controller can navigate to the previous or next practice [1h]
+5 Record view controller add statistics [1h]
+  - recording time, metronome time, measure count, meter, target tempo
+  - add progress bar based on a formula
+  - show temp, meter and measure count
+
+[1] 
+End 5th March 2016
+---------------------------------------------------
 
 Features
+practice view controller shows the last practised piece
+update record track in soundcloud
+add statistics : recording time, metronome time, measure count, meter, target tempo
+  - the last 3 variables can determine the length of recording upon achieving the target tempo.
+save access token in CoreData
+Add title to Recording View
 tempo persists in record view
 RecordView has back and next navigation button to traverse to neighbouring songs quickly
 cache the list of track info downloaded from the web.
+filter out noise from recording
 
 Bugs
 When iPhone goes to sleep mode, the metronome produces no sound.

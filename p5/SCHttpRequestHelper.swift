@@ -97,7 +97,7 @@ extension Soundcloud {
     func taskForPOSTMethodForFileUpload(method: String, parameters: [String : AnyObject], jsonBody: [String:String], filePaths : [String]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL and configure the request */
-        let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + Soundcloud.escapedParameters(parameters)
+        let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + self.escapedParameters(parameters)
         let url = NSURL(string: urlString)!
         let request = NSMutableURLRequest(URL: url)
         let session = NSURLSession.sharedSession()
@@ -162,7 +162,7 @@ extension Soundcloud {
 //        mutableParameters[ParameterKeys.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL and configure the request */
-        let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + Soundcloud.escapedParameters(mutableParameters)
+        let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + self.escapedParameters(mutableParameters)
         let url = NSURL(string: urlString)!
         let request = NSURLRequest(URL: url)
         let session = NSURLSession.sharedSession()
