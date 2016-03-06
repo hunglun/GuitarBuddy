@@ -36,6 +36,7 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
             audioPlayer.delegate = self
             audioPlayer.prepareToPlay()
             configureButtonsWhenReady()
+            RecordViewController.sharedInstance().practiceItem.practice.lastRecordingLength = Int(audioPlayer.duration)
         }
     }
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
@@ -47,6 +48,7 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
     @IBAction func playAudio(sender : UIButton){
         configureButtonsWhenProcessingAudio()
         audioPlayer.play()
+        
     }
     
     @IBAction func recordAudio(sender: AnyObject) {
@@ -69,7 +71,7 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
         audioRecorder.meteringEnabled = true
         audioRecorder.prepareToRecord()
         audioRecorder.record()
-        
+
         
         
     }

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		FA2CBB9F1C8B008700F051A2 /* PracticeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */; };
 		FA2CBBA11C8B099600F051A2 /* PracticeItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBBA01C8B099600F051A2 /* PracticeItemTableViewController.swift */; };
+		FA2CBBA51C8C24C600F051A2 /* PracticeItemSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBBA41C8C24C600F051A2 /* PracticeItemSettings.swift */; };
 		FA36D7771C8473A800F2AC7D /* Soundcloud.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36D7741C8473A800F2AC7D /* Soundcloud.swift */; };
 		FA36D7791C8473A800F2AC7D /* Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA36D7761C8473A800F2AC7D /* Convenience.swift */; };
 		FA8FD97B1C7F382B006380F1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8FD97A1C7F382B006380F1 /* AppDelegate.swift */; };
@@ -32,6 +33,7 @@
 /* Begin PBXFileReference section */
 		FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItem.swift; sourceTree = "<group>"; };
 		FA2CBBA01C8B099600F051A2 /* PracticeItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItemTableViewController.swift; sourceTree = "<group>"; };
+		FA2CBBA41C8C24C600F051A2 /* PracticeItemSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItemSettings.swift; sourceTree = "<group>"; };
 		FA36D7741C8473A800F2AC7D /* Soundcloud.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Soundcloud.swift; sourceTree = "<group>"; };
 		FA36D7761C8473A800F2AC7D /* Convenience.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Convenience.swift; sourceTree = "<group>"; };
 		FA8FD9771C7F382B006380F1 /* p5.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = p5.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -81,6 +83,7 @@
 			isa = PBXGroup;
 			children = (
 				FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */,
+				FA2CBBA41C8C24C600F051A2 /* PracticeItemSettings.swift */,
 			);
 			name = PracticeItem;
 			sourceTree = "<group>";
@@ -249,6 +252,7 @@
 				FA2CBB9F1C8B008700F051A2 /* PracticeItem.swift in Sources */,
 				FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */,
 				FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */,
+				FA2CBBA51C8C24C600F051A2 /* PracticeItemSettings.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

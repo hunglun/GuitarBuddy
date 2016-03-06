@@ -8,9 +8,19 @@
 
 import UIKit
 import AVFoundation
-class RecordViewController : UIViewController {
+class RecordViewController : UIViewController,UITextFieldDelegate {
     var practiceItem : PracticeItem!
+ 
+    @IBOutlet var beatsPerMinuteTextField: UITextField!
+    @IBOutlet var beatsPerMeasureTextField: UITextField!
+    @IBOutlet var totalNumOfMeasuresTextField: UITextField!
     
+    @IBOutlet var beatsPerMinuteStepper: UIStepper!
+    @IBOutlet var beatsPerMeasureStepper: UIStepper!
+    @IBOutlet var totalNumOfMeasuresStepper: UIStepper!
+    
+    @IBOutlet var musicPieceTitle: UITextField!
+
     @IBOutlet var progressBar: UIProgressView!
     @IBOutlet var songInfoLabel: UILabel!
     
@@ -30,6 +40,10 @@ class RecordViewController : UIViewController {
     var metronome : Metronome!
     var tempo: NSTimeInterval = 40 {
         didSet {
+            if let _ = RecordViewController.sharedInstance().practiceItem {
+                RecordViewController.sharedInstance().practiceItem.practice.currentBpm = Int(tempo)
+
+            }
             tempoLabel.text = String(format: "%.0f", tempo)
             tempoStepper.value = Double(tempo)
         }
@@ -38,20 +52,30 @@ class RecordViewController : UIViewController {
     override func viewWillAppear(animated: Bool) {
       //REMARK : don't use self.practiceItem
         if let item = RecordViewController.sharedInstance().practiceItem {
-            songInfoLabel.text = "Target bpm: \(item.song.targetBpm)|Beats/Measure: \(item.song.beatsPerMeasure)|Total Measures: \(item.song.numberOfMeasures) Song Length : \(item.song.expectedRecordingLength) secs"
+            beatsPerMinuteTextField.text = String(item.song.targetBpm)
+            beatsPerMeasureTextField.text = String(item.song.beatsPerMeasure)
+            totalNumOfMeasuresTextField.text = String(item.song.numberOfMeasures)
+
+            songInfoLabel.text = "Expected Song Length: \(item.song.expectedRecordingLength) secs"
             statsInfoLabel.text = "In Practice Tab Time: \(item.stats.practiceTabForegroundTime) min | Metronome Usage Time : \(item.stats.metronomeUsageTime) min | Recorder Usage Time : \(item.stats.recorderUsageTime) min"
             progressBar.setProgress( Float(item.progress), animated: true)
-            songInfoLabel.sizeToFit()
-            statsInfoLabel.sizeToFit()
+            
             print(item)
             print("Progress: \(item.progress)")
         }else{
             progressBar.setProgress(0,animated : false)
         }
     }
+    
+    func save(){
+        // save to PracticeItemTableViewController.sharedInstance().practiceItems
+        // save to CoreData
+        print("save this practice item")
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save")
+        musicPieceTitle.delegate = self
         //metronome
         metronomeStartStopState = false
         metronome = Metronome()

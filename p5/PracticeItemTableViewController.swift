@@ -18,9 +18,19 @@ class PracticeItemTableViewController: UIViewController {
     @IBOutlet weak var practiceItemTableView: UITableView!
     
     // MARK: Life Cycle
-    
+    func addPracticeItem(){
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+        let stats = Stats(practiceTabForegroundTime: 0, metronomeUsageTime: 0, recorderUsageTime: 0)
+        let song = Song(title: "Untitled", targetBpm: 60, beatsPerMeasure: 4, numberOfMeasures: 16)
+        let practice = Practice(currentBpm: 40, lastRecordingLength: 0)
+        let item = PracticeItem(stats: stats, song: song, practice: practice)
+        PracticeItemTableViewController.sharedInstance().practiceItems.append(item)
+        RecordViewController.sharedInstance().practiceItem = item
+        presentViewController(controller, animated: false, completion: nil)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "addPracticeItem")
         
         
         /* Create and set the logout button */
@@ -35,12 +45,12 @@ class PracticeItemTableViewController: UIViewController {
         var song = Song(title: "Hello WIlson", targetBpm: 60, beatsPerMeasure: 4, numberOfMeasures: 16)
         var practice = Practice(currentBpm: 45, lastRecordingLength: 64)
         var item = PracticeItem(stats: stats, song: song, practice: practice)
-        practiceItems.append(item)
+        PracticeItemTableViewController.sharedInstance().practiceItems.append(item)
         stats = Stats(practiceTabForegroundTime: 60, metronomeUsageTime: 60, recorderUsageTime: 60)
         song = Song(title: "Hello Ziyuan", targetBpm: 60, beatsPerMeasure: 4, numberOfMeasures: 16)
         practice = Practice(currentBpm: 60, lastRecordingLength: 32)
         item = PracticeItem(stats: stats, song: song, practice: practice)
-        practiceItems.append(item)
+        PracticeItemTableViewController.sharedInstance().practiceItems.append(item)
 
     }
     
@@ -54,7 +64,7 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
         
         /* Get cell type */
         let cellReuseIdentifier = "PracticeItemTableViewCell"
-        let practiceItem = practiceItems[indexPath.row]
+        let practiceItem = PracticeItemTableViewController.sharedInstance().practiceItems[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
@@ -79,19 +89,28 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return practiceItems.count
+        return PracticeItemTableViewController.sharedInstance().practiceItems.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         /* Push the movie detail view */
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-        RecordViewController.sharedInstance().practiceItem = practiceItems[indexPath.row]
+        RecordViewController.sharedInstance().practiceItem = PracticeItemTableViewController.sharedInstance().practiceItems[indexPath.row]
         presentViewController(controller, animated: false, completion: nil)
-//        self.navigationController!.pushViewController(controller, animated: true)
     
     }
     
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return 100
     }
+
+    class func sharedInstance() -> PracticeItemTableViewController {
+        
+        struct Singleton {
+            static var sharedInstance = PracticeItemTableViewController()
+        }
+        
+        return Singleton.sharedInstance
+    }
+
 }

@@ -79,19 +79,14 @@ Sprint 4 [40% DONE]
 3 Create AddPracticeItemViewController [1h]
 End 5th March 2016
 ---------------------------------------------------
-Sprint 5
+Sprint 5 [DONE]
 1 Record view controller add statistics [1h -> 2h][DONE]
-- recording time, metronome time, measure count, meter, target tempo
-- add progress bar based on a formula
-- show temp, meter and measure count
-2 Record view controller can navigate to the previous or next practice [1h]
-3 Create AddPracticeItemViewController [1h]
+  - recording time, metronome time, measure count, meter, target tempo
+  - add progress bar based on a formula
+  - show temp, meter and measure count
+2 Record view controller can navigate to the previous or next practice [1h][CANCELLED: unnecessary feature]
+3 Create Settings widget for practice item [1h -> 4h][DONE]
 
-[1]
-client code to call practice view controller. [30min]
-  -- call tab controller [DONE]
-  -- set selected practiceItem to a sharedInstance().currentPracticeItem [DONE]
-  -- practice view controller load from sharedInstance().currentPracticeItem in viewDidAppear()[DONE]
 End 6th March 2016
 ---------------------------------------------------
 
