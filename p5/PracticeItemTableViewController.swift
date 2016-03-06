@@ -83,11 +83,10 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-            //TODO : select -> record view
         /* Push the movie detail view */
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("RecordViewController") as! RecordViewController
-//        controller.practiceItem = practiceItems[indexPath.row]
-        presentViewController(controller, animated: true, completion: nil)
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
+        RecordViewController.sharedInstance().practiceItem = practiceItems[indexPath.row]
+        presentViewController(controller, animated: false, completion: nil)
 //        self.navigationController!.pushViewController(controller, animated: true)
     
     }

@@ -50,12 +50,12 @@ struct PracticeItem {
     var stats : Stats
     var song : Song
     var practice: Practice
-    var progress : Int {
+    var progress : Float {
         get {
-            return
-                (100 * (1 - abs( practice.lastRecordingLength - song.expectedRecordingLength))
-                     * practice.currentBpm )
-                / (song.targetBpm * song.expectedRecordingLength)
+
+            let bpmRatio =  Float(practice.currentBpm) / Float(song.targetBpm)
+            let lengthRatio = Float(practice.lastRecordingLength - song.expectedRecordingLength) / Float(song.expectedRecordingLength)
+            return  (1 - abs(lengthRatio)) * bpmRatio
         }
     }
     init(stats: Stats, song: Song, practice: Practice){
@@ -63,5 +63,7 @@ struct PracticeItem {
         self.song = song
         self.practice = practice
     }
+    
+    
 }
 

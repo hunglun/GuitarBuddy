@@ -9,7 +9,12 @@
 import UIKit
 import AVFoundation
 class RecordViewController : UIViewController {
-
+    var practiceItem : PracticeItem!
+    
+    @IBOutlet var progressBar: UIProgressView!
+    @IBOutlet var songInfoLabel: UILabel!
+    
+    @IBOutlet var statsInfoLabel: UILabel!
     //recorder
     @IBOutlet weak var stopRecordingButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
@@ -30,10 +35,23 @@ class RecordViewController : UIViewController {
         }
     }
     
-
+    override func viewWillAppear(animated: Bool) {
+      //REMARK : don't use self.practiceItem
+        if let item = RecordViewController.sharedInstance().practiceItem {
+            songInfoLabel.text = "Target bpm: \(item.song.targetBpm)|Beats/Measure: \(item.song.beatsPerMeasure)|Total Measures: \(item.song.numberOfMeasures) Song Length : \(item.song.expectedRecordingLength) secs"
+            statsInfoLabel.text = "In Practice Tab Time: \(item.stats.practiceTabForegroundTime) min | Metronome Usage Time : \(item.stats.metronomeUsageTime) min | Recorder Usage Time : \(item.stats.recorderUsageTime) min"
+            progressBar.setProgress( Float(item.progress), animated: true)
+            songInfoLabel.sizeToFit()
+            statsInfoLabel.sizeToFit()
+            print(item)
+            print("Progress: \(item.progress)")
+        }else{
+            progressBar.setProgress(0,animated : false)
+        }
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         //metronome
         metronomeStartStopState = false
         metronome = Metronome()
@@ -61,5 +79,14 @@ class RecordViewController : UIViewController {
             Soundcloud.sharedInstance().upload(filePath, title: "TestWav")
         }
     }
+    class func sharedInstance() -> RecordViewController {
+        
+        struct Singleton {
+            static var sharedInstance = RecordViewController()
+        }
+        
+        return Singleton.sharedInstance
+    }
+
 }
 

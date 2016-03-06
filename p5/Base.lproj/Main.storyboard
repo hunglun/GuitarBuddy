@@ -9,7 +9,7 @@
         <!--Tab Bar Controller-->
         <scene sceneID="5Gk-II-JWw">
             <objects>
-                <tabBarController id="gF4-1q-45s" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" id="gF4-1q-45s" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="0IK-pB-5Hr">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -141,20 +141,54 @@
                                     <action selector="publishButtonTouchUpInside:" destination="BYZ-38-t0r" eventType="touchUpInside" id="0Am-Zn-MML"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjP-Q4-cZq">
+                                <rect key="frame" x="15" y="77" width="570" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="sRh-Nt-dSD"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gqx-6r-x1u">
+                                <rect key="frame" x="15" y="463" width="580" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="580" id="A1J-XD-z8Y"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="8"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="h2D-r2-mqT">
+                                <rect key="frame" x="15" y="384" width="565" height="2"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="565" id="nSo-iX-IU0"/>
+                                </constraints>
+                                <color key="progressTintColor" red="0.16207373189999999" green="1" blue="0.2270977565" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="trackTintColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
+                            </progressView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="cTE-T7-RzB" firstAttribute="baseline" secondItem="SyT-5P-GTE" secondAttribute="baseline" id="2mJ-3z-nGg"/>
+                            <constraint firstItem="gqx-6r-x1u" firstAttribute="top" secondItem="h2D-r2-mqT" secondAttribute="bottom" constant="77" id="BSG-QS-gol"/>
                             <constraint firstItem="42x-qT-pCu" firstAttribute="baseline" secondItem="brr-Kc-fOi" secondAttribute="baseline" id="Dim-TQ-FV4"/>
                             <constraint firstItem="42x-qT-pCu" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="90" id="EZN-Nk-T07"/>
+                            <constraint firstItem="gqx-6r-x1u" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" constant="15" id="KNG-cX-Bdd"/>
                             <constraint firstItem="q2a-3M-zXp" firstAttribute="leading" secondItem="42x-qT-pCu" secondAttribute="trailing" constant="15" id="OA2-C1-CEf"/>
                             <constraint firstItem="cTE-T7-RzB" firstAttribute="top" secondItem="Uz8-YZ-XK2" secondAttribute="bottom" constant="23" id="Ofn-1K-sV6"/>
+                            <constraint firstItem="h2D-r2-mqT" firstAttribute="leading" secondItem="gqx-6r-x1u" secondAttribute="leading" id="Qfo-kF-buZ"/>
                             <constraint firstItem="42x-qT-pCu" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="RcR-ii-Krr"/>
                             <constraint firstItem="zbD-KG-x53" firstAttribute="baseline" secondItem="SyT-5P-GTE" secondAttribute="baseline" id="TFM-ls-C1A"/>
                             <constraint firstItem="SyT-5P-GTE" firstAttribute="leading" secondItem="cTE-T7-RzB" secondAttribute="trailing" constant="19" id="Y4e-6m-dP0"/>
                             <constraint firstItem="Uz8-YZ-XK2" firstAttribute="leading" secondItem="q2a-3M-zXp" secondAttribute="leading" id="eVj-KD-q7v"/>
                             <constraint firstItem="q2a-3M-zXp" firstAttribute="top" secondItem="cTE-T7-RzB" secondAttribute="bottom" constant="24" id="haJ-ob-tBC"/>
+                            <constraint firstItem="sjP-Q4-cZq" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="13" id="i8t-lI-HQa"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="gqx-6r-x1u" secondAttribute="bottom" constant="67" id="j5T-Mu-Auq"/>
                             <constraint firstItem="zbD-KG-x53" firstAttribute="leading" secondItem="SyT-5P-GTE" secondAttribute="trailing" constant="22" id="kle-UL-Obu"/>
+                            <constraint firstItem="h2D-r2-mqT" firstAttribute="leading" secondItem="sjP-Q4-cZq" secondAttribute="leading" id="lKy-c5-9jf"/>
+                            <constraint firstItem="h2D-r2-mqT" firstAttribute="top" secondItem="42x-qT-pCu" secondAttribute="bottom" constant="74" id="mNq-eV-bHk"/>
+                            <constraint firstItem="gqx-6r-x1u" firstAttribute="trailing" secondItem="sjP-Q4-cZq" secondAttribute="trailing" constant="10" id="mdZ-R3-dDo"/>
                             <constraint firstItem="zbD-KG-x53" firstAttribute="trailing" secondItem="brr-Kc-fOi" secondAttribute="trailing" id="pi4-jK-4NE"/>
                             <constraint firstItem="brr-Kc-fOi" firstAttribute="top" secondItem="q2a-3M-zXp" secondAttribute="top" id="sm8-Aw-Cqn"/>
                             <constraint firstItem="brr-Kc-fOi" firstAttribute="leading" secondItem="q2a-3M-zXp" secondAttribute="trailing" constant="8" symbolic="YES" id="zg9-P1-Knc"/>
@@ -164,7 +198,10 @@
                     <connections>
                         <outlet property="metronomeStartStopButton" destination="brr-Kc-fOi" id="hk2-7h-meB"/>
                         <outlet property="playAudioButton" destination="zbD-KG-x53" id="hI0-3T-gHp"/>
+                        <outlet property="progressBar" destination="h2D-r2-mqT" id="HiV-rW-CUZ"/>
                         <outlet property="recordButton" destination="cTE-T7-RzB" id="BIT-1m-euv"/>
+                        <outlet property="songInfoLabel" destination="sjP-Q4-cZq" id="Cbd-sl-VLE"/>
+                        <outlet property="statsInfoLabel" destination="gqx-6r-x1u" id="bbO-bk-7N4"/>
                         <outlet property="stopRecordingButton" destination="SyT-5P-GTE" id="Yv9-d0-fAm"/>
                         <outlet property="tempoLabel" destination="42x-qT-pCu" id="pD4-59-615"/>
                         <outlet property="tempoStepper" destination="q2a-3M-zXp" id="xAd-Xg-p0F"/>
