@@ -86,19 +86,30 @@ Sprint 5 [DONE]
 
 End 6th March 2016
 ---------------------------------------------------
+Sprint 6
+1. create a model for PracticeItem [1h]
+2. enable addition of PracticeItem to CoreData [1h]
+3. load last saved practice Item to Practice View [30min]
+4. persist the current practiceItem ID [30min]
+5. populate Practice List with data from CoreData [1h]
+6. enable deletion of PracticeItem from CoreData [1h]
+
+End 10th March 2016
+---------------------------------------------------
 
 Features
-- add a fast tempo button to quicken playback.
-practice view controller shows the last practised piece
-update record track in soundcloud
-add statistics : recording time, metronome time, measure count, meter, target tempo
-  - the last 3 variables can determine the length of recording upon achieving the target tempo.
-save access token in CoreData
-Add title to Recording View
-tempo persists in record view
-RecordView has back and next navigation button to traverse to neighbouring songs quickly
-cache the list of track info downloaded from the web.
-filter out noise from recording
+1. practice view controller shows the last practised piece
+2. tempo persists in record view
+3. update record track in soundcloud
+4. check if access token is valid. If not, request access token again.
+5. add a fast tempo button to quicken playback.
+6. filter out noise from recording [ADVANCED]
+add statistics : recording time, metronome time, measure count, meter, target tempo [DONE]
+  - the last 3 variables can determine the length of recording upon achieving the target tempo. [DONE]
+persist access token [DONE]
+Add title to Recording View [DONE]
+RecordView has back and next navigation button to traverse to neighbouring songs quickly [CANCELLED]
+cache the list of track info downloaded from the web. [CANCELLED]
 
 Bugs
 metronome stops when recording starts. [DONE]
