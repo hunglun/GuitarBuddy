@@ -14,16 +14,29 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
 
     func configureButtonsWhenReady (){
         recordButton.enabled = true
-        stopRecordingButton.enabled = false
+        stopRecordPlayButton.enabled = false
         playAudioButton.enabled = true
     }
     
     func configureButtonsWhenProcessingAudio (){
         recordButton.enabled = false
-        stopRecordingButton.enabled = true
+        stopRecordPlayButton.enabled = true
         playAudioButton.enabled = false
     }
 
+    func setupAudioPlayer(url : NSURL){
+        audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
+        audioPlayer.delegate = self
+        audioPlayer.prepareToPlay()
+    }
+    func resetAudioPlayer(){
+        if let url = audioPlayer?.url {
+            audioPlayer = try? AVAudioPlayer(contentsOfURL: url)
+            audioPlayer.delegate = self
+            audioPlayer.prepareToPlay()
+        }
+    }
+    
     func audioRecorderDidFinishRecording(recorder: AVAudioRecorder, successfully flag: Bool) {
         if flag {
             do {
@@ -32,11 +45,13 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
                 print(error.localizedDescription)
             }
 
-            audioPlayer = try? AVAudioPlayer(contentsOfURL: recorder.url)
-            audioPlayer.delegate = self
-            audioPlayer.prepareToPlay()
+            setupAudioPlayer(recorder.url)
             configureButtonsWhenReady()
             RecordViewController.sharedInstance().practiceItem.practice.lastRecordingLength = Int(audioPlayer.duration)
+/*            dispatch_async(dispatch_get_main_queue()) {
+                RecordViewController.sharedInstance().updateStats(RecordViewController.sharedInstance().practiceItem)
+            }*/
+
         }
     }
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
@@ -76,11 +91,12 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
         
     }
     
-    @IBAction func stopRecording(sender: AnyObject) {
+    @IBAction func stopRecordPlay(sender: AnyObject) {
         //Inside func stopAudio(sender: UIButton)
         configureButtonsWhenReady()
         audioRecorder.stop()
         audioPlayer?.stop()
+        resetAudioPlayer()
   //      let audioSession = AVAudioSession.sharedInstance()
  //       try! audioSession.setActive(false)
         

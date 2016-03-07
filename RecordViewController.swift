@@ -26,7 +26,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     
     @IBOutlet var statsInfoLabel: UILabel!
     //recorder
-    @IBOutlet weak var stopRecordingButton: UIButton!
+    @IBOutlet weak var stopRecordPlayButton: UIButton!
     @IBOutlet weak var recordButton: UIButton!
     @IBOutlet var playAudioButton: UIButton!
     var audioPlayer: AVAudioPlayer!
@@ -48,9 +48,13 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             tempoStepper.value = Double(tempo)
         }
     }
-    
+    func updateStats(item : PracticeItem){
+      statsInfoLabel.text = "In Practice Tab Time: \(item.stats.practiceTabForegroundTime) min | Metronome Usage Time : \(item.stats.metronomeUsageTime) min | Recorder Usage Time : \(item.stats.recorderUsageTime) min "
+//        print("| Last Record: \(item.practice.lastRecordingLength) secs| Progress: \(item.progress * 100)%"
+    }
     override func viewWillAppear(animated: Bool) {
       //REMARK : don't use self.practiceItem
+        practiceItem = RecordViewController.sharedInstance().practiceItem
         if let item = RecordViewController.sharedInstance().practiceItem {
             beatsPerMinuteTextField.text = String(item.song.targetBpm)
             beatsPerMeasureTextField.text = String(item.song.beatsPerMeasure)
@@ -58,9 +62,9 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             beatsPerMinuteStepper.value = Double(item.song.targetBpm)
             beatsPerMeasureStepper.value = Double(item.song.beatsPerMeasure)
             totalNumOfMeasuresStepper.value = Double(item.song.numberOfMeasures)
-
+            musicPieceTitle.text = item.song.title
             songInfoLabel.text = "Expected Song Length: \(item.song.expectedRecordingLength) secs"
-            statsInfoLabel.text = "In Practice Tab Time: \(item.stats.practiceTabForegroundTime) min | Metronome Usage Time : \(item.stats.metronomeUsageTime) min | Recorder Usage Time : \(item.stats.recorderUsageTime) min"
+            updateStats(item)
             progressBar.setProgress( Float(item.progress), animated: true)
             
             print(item)
@@ -92,7 +96,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         tempo = 40
 
         //recorder
-        stopRecordingButton.enabled = false
+        stopRecordPlayButton.enabled = false
         recordButton.enabled = true
         playAudioButton.enabled = false
     }
@@ -110,7 +114,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             return
         }
         if let filePath = filePath {
-            Soundcloud.sharedInstance().upload(filePath, title: "TestWav")
+            Soundcloud.sharedInstance().upload(filePath, title: practiceItem.song.title, controller: self)
         }
     }
     class func sharedInstance() -> RecordViewController {

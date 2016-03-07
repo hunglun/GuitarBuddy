@@ -151,7 +151,7 @@ class Soundcloud : NSObject {
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
 
-    func upload(file : NSURL, title: String){
+    func upload(file : NSURL, title: String, controller : UIViewController){
         
         let accessToken = Soundcloud.sharedInstance().accessToken
         let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
@@ -169,9 +169,19 @@ class Soundcloud : NSObject {
                 print("error upload")
                 print(error)
                 //              completionHandler(result: nil, error: error)
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Fails")
+                }
+
             } else {
                 print(JSONResult)
                 print("success upload")
+
+                dispatch_async(dispatch_get_main_queue()) {
+                    
+                    Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Successful.")
+                }
     //            completionHandler(result: results, error: nil)
                 
                 /*                if let results = JSONResult[Soundcloud.JSONResponseKeys.StatusCode] as? Int {

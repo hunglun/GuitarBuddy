@@ -112,6 +112,7 @@ RecordView has back and next navigation button to traverse to neighbouring songs
 cache the list of track info downloaded from the web. [CANCELLED]
 
 Bugs
+replace singleton instance of RecordViewController with segue message passing.
 metronome stops when recording starts. [DONE]
 When iPhone goes to sleep mode, the metronome produces no sound.
 remove wav file before recording a new one.

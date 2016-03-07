@@ -23,7 +23,11 @@ extension RecordViewController{
     }
     
     @IBAction func musicPieceTitleEditEnd(sender: UITextField) {
-        RecordViewController.sharedInstance().practiceItem.song.title = sender.text ?? "Untitled"
+//        RecordViewController.sharedInstance().practiceItem.song.title = sender.text ?? "Untitled"
+        practiceItem.song.title = sender.text ?? "Untitled"
+        print(RecordViewController.sharedInstance().practiceItem.song.title )
+        print(practiceItem.song.title )
+
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {

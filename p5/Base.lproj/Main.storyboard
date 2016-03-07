@@ -104,7 +104,7 @@
                                 </constraints>
                                 <state key="normal" title="Stop"/>
                                 <connections>
-                                    <action selector="stopRecording:" destination="BYZ-38-t0r" eventType="touchUpInside" id="UvL-5A-sMc"/>
+                                    <action selector="stopRecordPlay:" destination="BYZ-38-t0r" eventType="touchUpInside" id="WB2-0d-ACL"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zbD-KG-x53">
@@ -289,7 +289,7 @@
                         <outlet property="recordButton" destination="cTE-T7-RzB" id="BIT-1m-euv"/>
                         <outlet property="songInfoLabel" destination="sjP-Q4-cZq" id="Cbd-sl-VLE"/>
                         <outlet property="statsInfoLabel" destination="gqx-6r-x1u" id="bbO-bk-7N4"/>
-                        <outlet property="stopRecordingButton" destination="SyT-5P-GTE" id="Yv9-d0-fAm"/>
+                        <outlet property="stopRecordPlayButton" destination="SyT-5P-GTE" id="1ac-Ia-dA0"/>
                         <outlet property="tempoLabel" destination="42x-qT-pCu" id="pD4-59-615"/>
                         <outlet property="tempoStepper" destination="q2a-3M-zXp" id="xAd-Xg-p0F"/>
                         <outlet property="totalNumOfMeasuresStepper" destination="cE3-lH-PMK" id="ALt-V3-XuB"/>
