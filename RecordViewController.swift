@@ -68,6 +68,13 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         }else{
             progressBar.setProgress(0,animated : false)
         }
+        
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: .DefaultToSpeaker)
+        } catch let error as NSError {
+            print(error.localizedDescription)
+        }
+
     }
     
     func save(){

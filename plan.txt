@@ -104,6 +104,6 @@ cache the list of track info downloaded from the web.
 filter out noise from recording
 
 Bugs
-metronome stops when recording starts.
+metronome stops when recording starts. [DONE]
 When iPhone goes to sleep mode, the metronome produces no sound.
 remove wav file before recording a new one.

@@ -47,12 +47,7 @@ class Metronome : NSObject {
     
     override init() {
         // Initialize the sound player
-        do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: .DefaultToSpeaker)
-        } catch let error as NSError {
-            print(error.localizedDescription)
-        }
-
+     
         let metronomeSoundURL = NSURL(fileURLWithPath: NSBundle.mainBundle().pathForResource("metronomeClick", ofType: "mp3")!)
         metronomeSoundPlayer = try? AVAudioPlayer(contentsOfURL: metronomeSoundURL)
         metronomeSoundPlayer.prepareToPlay()
