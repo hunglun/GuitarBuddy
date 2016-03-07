@@ -91,6 +91,7 @@ End 6th March 2016
 ---------------------------------------------------
 
 Features
+- add a fast tempo button to quicken playback.
 practice view controller shows the last practised piece
 update record track in soundcloud
 add statistics : recording time, metronome time, measure count, meter, target tempo
@@ -103,5 +104,6 @@ cache the list of track info downloaded from the web.
 filter out noise from recording
 
 Bugs
+metronome stops when recording starts.
 When iPhone goes to sleep mode, the metronome produces no sound.
 remove wav file before recording a new one.

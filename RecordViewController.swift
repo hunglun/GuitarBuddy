@@ -55,6 +55,9 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             beatsPerMinuteTextField.text = String(item.song.targetBpm)
             beatsPerMeasureTextField.text = String(item.song.beatsPerMeasure)
             totalNumOfMeasuresTextField.text = String(item.song.numberOfMeasures)
+            beatsPerMinuteStepper.value = Double(item.song.targetBpm)
+            beatsPerMeasureStepper.value = Double(item.song.beatsPerMeasure)
+            totalNumOfMeasuresStepper.value = Double(item.song.numberOfMeasures)
 
             songInfoLabel.text = "Expected Song Length: \(item.song.expectedRecordingLength) secs"
             statsInfoLabel.text = "In Practice Tab Time: \(item.stats.practiceTabForegroundTime) min | Metronome Usage Time : \(item.stats.metronomeUsageTime) min | Recorder Usage Time : \(item.stats.recorderUsageTime) min"
