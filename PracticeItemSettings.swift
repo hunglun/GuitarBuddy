@@ -11,19 +11,23 @@ import UIKit
 extension RecordViewController{
     @IBAction func beatsPerMinuteChanged(stepper: UIStepper) {
         beatsPerMinuteTextField.text = String(Int(stepper.value))
-        RecordViewController.practiceItem.song.targetBpm = Int(stepper.value)
+        RecordViewController.practiceItemX.targetBpm = Int(stepper.value)
+        CoreDataStackManager.sharedInstance().saveContext()
     }
     @IBAction func beatsPerMeasureChanged(stepper: UIStepper) {
         beatsPerMeasureTextField.text = String(Int(stepper.value))
-        RecordViewController.practiceItem.song.beatsPerMeasure = Int(stepper.value)
+        RecordViewController.practiceItemX.beatsPerMeasure = Int(stepper.value)
+        CoreDataStackManager.sharedInstance().saveContext()
     }
     @IBAction func totalNumOfMeasuresChanged(stepper: UIStepper) {
         totalNumOfMeasuresTextField.text = String(Int(stepper.value))
-        RecordViewController.practiceItem.song.numberOfMeasures = Int(stepper.value)
+        RecordViewController.practiceItemX.numberOfMeasures = Int(stepper.value)
+        CoreDataStackManager.sharedInstance().saveContext()
     }
     
     @IBAction func musicPieceTitleEditEnd(sender: UITextField) {
-        RecordViewController.practiceItem.song.title = sender.text ?? "Untitled"
+        RecordViewController.practiceItemX.title = sender.text ?? "Untitled"
+        CoreDataStackManager.sharedInstance().saveContext()
     }
 
     func textFieldShouldReturn(textField: UITextField) -> Bool {

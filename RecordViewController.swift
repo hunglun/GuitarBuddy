@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import CoreData
 import AVFoundation
 class RecordViewController : UIViewController,UITextFieldDelegate {
     static var practiceItem : PracticeItem!
- 
+    static var practiceItemX : PracticeItemX!
     @IBOutlet var beatsPerMinuteTextField: UITextField!
     @IBOutlet var beatsPerMeasureTextField: UITextField!
     @IBOutlet var totalNumOfMeasuresTextField: UITextField!
@@ -41,7 +42,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     var tempo: NSTimeInterval = 40 {
         didSet {
             if let _ = RecordViewController.practiceItem {
-                RecordViewController.practiceItem.practice.currentBpm = Int(tempo)
+                RecordViewController.practiceItemX.currentBpm = Int(tempo)
 
             }
             tempoLabel.text = String(format: "%.0f", tempo)
@@ -52,8 +53,34 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
       statsInfoLabel.text = "In Practice Tab Time: \(item.stats.practiceTabForegroundTime) min | Metronome Usage Time : \(item.stats.metronomeUsageTime) min | Recorder Usage Time : \(item.stats.recorderUsageTime) min "
 //        print("| Last Record: \(item.practice.lastRecordingLength) secs| Progress: \(item.progress * 100)%"
     }
+    
+    func save(){
+        RecordViewController.practiceItemX.title = NSString(string: musicPieceTitle.text!)
+        RecordViewController.practiceItemX.targetBpm = beatsPerMinuteStepper.value
+        RecordViewController.practiceItemX.beatsPerMeasure = beatsPerMeasureStepper.value
+        RecordViewController.practiceItemX.numberOfMeasures = totalNumOfMeasuresStepper.value
+        CoreDataStackManager.sharedInstance().saveContext()
+    }
+    
+
     override func viewWillAppear(animated: Bool) {
       //REMARK : don't use self.practiceItem
+        RecordViewController.practiceItemX  = fetchLastPracticeItem()
+        let item = RecordViewController.practiceItemX
+        beatsPerMinuteTextField.text = String(item.targetBpm)
+        beatsPerMeasureTextField.text = String(item.beatsPerMeasure)
+        totalNumOfMeasuresTextField.text = String(item.numberOfMeasures)
+        beatsPerMinuteStepper.value = Double(item.targetBpm)
+        beatsPerMeasureStepper.value = Double(item.beatsPerMeasure)
+        totalNumOfMeasuresStepper.value = Double(item.numberOfMeasures)
+        tempoLabel.text = String(item.currentBpm)
+
+        musicPieceTitle.text = String(item.title)
+        songInfoLabel.text = "Expected Song Length: \(item.expectedRecordingLength) secs"
+//        updateStats(item)
+        progressBar.setProgress( Float(item.progress), animated: true)
+  
+        /*
         if let item = RecordViewController.practiceItem {
             beatsPerMinuteTextField.text = String(item.song.targetBpm)
             beatsPerMeasureTextField.text = String(item.song.beatsPerMeasure)
@@ -71,6 +98,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         }else{
             progressBar.setProgress(0,animated : false)
         }
+        */
         
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: .DefaultToSpeaker)
@@ -80,10 +108,24 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
 
     }
     
-    func save(){
-        // save to PracticeItemTableViewController.sharedInstance().practiceItems
-        // save to CoreData
-        print("save this practice item")
+    
+    
+    func fetchLastPracticeItem() -> PracticeItemX{
+        // Create the Fetch Request
+        let fetchRequest = NSFetchRequest(entityName: "PracticeItemX")
+        
+        // Execute the Fetch Request
+        do {
+            let items = try sharedContext.executeFetchRequest(fetchRequest) as! [PracticeItemX]
+            //TODO: search for the last practice item.
+            return items[0]
+        } catch _ {
+            //TODO: understand what it means
+            return PracticeItemX()
+        }
+    }
+    var sharedContext : NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -113,7 +155,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             return
         }
         if let filePath = filePath {
-            Soundcloud.sharedInstance().upload(filePath, title: RecordViewController.practiceItem.song.title, controller: self)
+            Soundcloud.sharedInstance().upload(filePath, title: String(RecordViewController.practiceItemX.title), controller: self)
         }
     }
     

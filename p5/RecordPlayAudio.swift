@@ -47,7 +47,7 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
 
             setupAudioPlayer(recorder.url)
             configureButtonsWhenReady()
-            RecordViewController.practiceItem.practice.lastRecordingLength = Int(audioPlayer.duration)
+            RecordViewController.practiceItemX.lastRecordingLength = Int(audioPlayer.duration)
 
         }
     }

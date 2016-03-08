@@ -22,8 +22,9 @@ extension RecordViewController{
     @IBAction func tempoChanged(tempoStepper: UIStepper) {
         // Save the new tempo.
         tempo = tempoStepper.value
-        progressBar.setProgress( RecordViewController.practiceItem.progress, animated: true)
-        
+        progressBar.setProgress( RecordViewController.practiceItemX.progress, animated: true)
+        RecordViewController.practiceItemX.currentBpm = tempo
+        CoreDataStackManager.sharedInstance().saveContext()
     }
 
 }

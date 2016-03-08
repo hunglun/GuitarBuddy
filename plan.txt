@@ -87,11 +87,11 @@ Sprint 5 [DONE]
 End 6th March 2016
 ---------------------------------------------------
 Sprint 6
-1. create a model for PracticeItem [1h]
-2. enable addition of PracticeItem to CoreData [1h]
-3. load last saved practice Item to Practice View [30min]
-4. persist the current practiceItem ID [30min]
-5. populate Practice List with data from CoreData [1h]
+1. create a model for PracticeItem [1h][DONE]
+2. enable addition of PracticeItem to CoreData [1h][DONE]
+3. load last saved practice Item to Practice View [30min][DONE]
+4. persist the current practiceItem ID [30min][DONE]
+5. populate Practice List with data from CoreData [1h][DONE]
 6. enable deletion of PracticeItem from CoreData [1h]
 
 End 10th March 2016
