@@ -25,7 +25,7 @@ class PracticeItemTableViewController: UIViewController {
         let practice = Practice(currentBpm: 40, lastRecordingLength: 0)
         let item = PracticeItem(stats: stats, song: song, practice: practice)
         PracticeItemTableViewController.sharedInstance().practiceItems.append(item)
-        RecordViewController.sharedInstance().practiceItem = item
+        RecordViewController.practiceItem = item
         presentViewController(controller, animated: false, completion: nil)
     }
     override func viewDidLoad() {
@@ -95,7 +95,7 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         /* Push the movie detail view */
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-        RecordViewController.sharedInstance().practiceItem = PracticeItemTableViewController.sharedInstance().practiceItems[indexPath.row]
+        RecordViewController.practiceItem = PracticeItemTableViewController.sharedInstance().practiceItems[indexPath.row]
         presentViewController(controller, animated: false, completion: nil)
     
     }

@@ -170,8 +170,12 @@ class Soundcloud : NSObject {
                 print(error)
                 //              completionHandler(result: nil, error: error)
                 dispatch_async(dispatch_get_main_queue()) {
+
+                    let alert = Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Fails")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        controller.presentViewController(alert, animated: true, completion: nil)
+                    }
                     
-                    Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Fails")
                 }
 
             } else {
@@ -180,7 +184,12 @@ class Soundcloud : NSObject {
 
                 dispatch_async(dispatch_get_main_queue()) {
                     
-                    Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Successful.")
+                    let alert = Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Successful.")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        controller.presentViewController(alert, animated: true, completion: nil)
+                    }
+
+                    
                 }
     //            completionHandler(result: results, error: nil)
                 

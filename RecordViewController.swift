@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 class RecordViewController : UIViewController,UITextFieldDelegate {
-    var practiceItem : PracticeItem!
+    static var practiceItem : PracticeItem!
  
     @IBOutlet var beatsPerMinuteTextField: UITextField!
     @IBOutlet var beatsPerMeasureTextField: UITextField!
@@ -40,8 +40,8 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     var metronome : Metronome!
     var tempo: NSTimeInterval = 40 {
         didSet {
-            if let _ = RecordViewController.sharedInstance().practiceItem {
-                RecordViewController.sharedInstance().practiceItem.practice.currentBpm = Int(tempo)
+            if let _ = RecordViewController.practiceItem {
+                RecordViewController.practiceItem.practice.currentBpm = Int(tempo)
 
             }
             tempoLabel.text = String(format: "%.0f", tempo)
@@ -54,8 +54,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     }
     override func viewWillAppear(animated: Bool) {
       //REMARK : don't use self.practiceItem
-        practiceItem = RecordViewController.sharedInstance().practiceItem
-        if let item = RecordViewController.sharedInstance().practiceItem {
+        if let item = RecordViewController.practiceItem {
             beatsPerMinuteTextField.text = String(item.song.targetBpm)
             beatsPerMeasureTextField.text = String(item.song.beatsPerMeasure)
             totalNumOfMeasuresTextField.text = String(item.song.numberOfMeasures)
@@ -114,17 +113,10 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             return
         }
         if let filePath = filePath {
-            Soundcloud.sharedInstance().upload(filePath, title: practiceItem.song.title, controller: self)
+            Soundcloud.sharedInstance().upload(filePath, title: RecordViewController.practiceItem.song.title, controller: self)
         }
     }
-    class func sharedInstance() -> RecordViewController {
-        
-        struct Singleton {
-            static var sharedInstance = RecordViewController()
-        }
-        
-        return Singleton.sharedInstance
-    }
+    
 
 }
 
