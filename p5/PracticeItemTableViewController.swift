@@ -13,7 +13,7 @@ import CoreData
 class PracticeItemTableViewController: UIViewController {
     
     // MARK: Properties
-    var practiceItems: [PracticeItemX] = [PracticeItemX]()
+    static var practiceItems: [PracticeItemX] = [PracticeItemX]()
     
     @IBOutlet weak var practiceItemTableView: UITableView!
     
@@ -41,12 +41,8 @@ class PracticeItemTableViewController: UIViewController {
         let song = Song(title: "Untitled", targetBpm: 60, beatsPerMeasure: 4, numberOfMeasures: 16)
         let practice = Practice(currentBpm: 40, lastRecordingLength: 0)
         let item = PracticeItem(stats: stats, song: song, practice: practice)
-        //TODO: remove sharedInstance from PracticeItemTableViewController
-        
-       
-        
         let itemX = addPracticeItemToCoreData(item)
-        PracticeItemTableViewController.sharedInstance().practiceItems.append(itemX)
+        PracticeItemTableViewController.practiceItems.append(itemX)
         //TODO: think about how to pass item to RecordViewController
         presentViewController(controller, animated: false, completion: nil)
     }
@@ -80,25 +76,10 @@ class PracticeItemTableViewController: UIViewController {
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        
-        //TODO: populate with data from CoreData
-//        let stats = Stats(60 : practiceTabForegroundTime, 60 : metronomeUsageTime, 60 : recorderUsageTime)
+        PracticeItemTableViewController.practiceItems = [PracticeItemX]()
         for item in fetchAllPracticeItems(){
-            PracticeItemTableViewController.sharedInstance().practiceItems.append(item)
+            PracticeItemTableViewController.practiceItems.append(item)
         }
-        return
-        /*
-        var stats = Stats(practiceTabForegroundTime: 60, metronomeUsageTime: 60, recorderUsageTime: 60)
-        var song = Song(title: "Hello WIlson", targetBpm: 60, beatsPerMeasure: 4, numberOfMeasures: 16)
-        var practice = Practice(currentBpm: 45, lastRecordingLength: 64)
-        var item = PracticeItem(stats: stats, song: song, practice: practice)
-        PracticeItemTableViewController.sharedInstance().practiceItems.append(item)
-        stats = Stats(practiceTabForegroundTime: 60, metronomeUsageTime: 60, recorderUsageTime: 60)
-        song = Song(title: "Hello Ziyuan", targetBpm: 60, beatsPerMeasure: 4, numberOfMeasures: 16)
-        practice = Practice(currentBpm: 60, lastRecordingLength: 32)
-        item = PracticeItem(stats: stats, song: song, practice: practice)
-        PracticeItemTableViewController.sharedInstance().practiceItems.append(item)
-*/
     }
     
 }
@@ -111,7 +92,7 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
         
         /* Get cell type */
         let cellReuseIdentifier = "PracticeItemTableViewCell"
-        let practiceItem = PracticeItemTableViewController.sharedInstance().practiceItems[indexPath.row]
+        let practiceItem = PracticeItemTableViewController.practiceItems[indexPath.row]
         let cell = tableView.dequeueReusableCellWithIdentifier(cellReuseIdentifier) as UITableViewCell!
         
         /* Set cell defaults */
@@ -136,13 +117,13 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return PracticeItemTableViewController.sharedInstance().practiceItems.count
+        return PracticeItemTableViewController.practiceItems.count
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         /* Push the movie detail view */
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-        RecordViewController.practiceItemX = PracticeItemTableViewController.sharedInstance().practiceItems[indexPath.row]
+        RecordViewController.practiceItemX = PracticeItemTableViewController.practiceItems[indexPath.row]
         presentViewController(controller, animated: false, completion: nil)
     
     }
@@ -151,13 +132,5 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
         return 100
     }
 
-    class func sharedInstance() -> PracticeItemTableViewController {
-        
-        struct Singleton {
-            static var sharedInstance = PracticeItemTableViewController()
-        }
-        
-        return Singleton.sharedInstance
-    }
-
+  
 }

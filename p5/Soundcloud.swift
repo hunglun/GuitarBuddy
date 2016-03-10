@@ -15,12 +15,8 @@ class Soundcloud : NSObject {
     var lastName : String!
     var userId : String?
     var code : String?
-//    var accessToken : String?
     var accessToken: String?
-    let SoundcloudSecureBaseUrl = "https://api.soundcloud.com"
-    let clientId = "fdf75eddcd987c3e6beb9b3a47925633"
-    let clientSecret = "dfd72e17039500100a3b5bd0be3cb9b0"
-
+  
     // Here we use the same filePath strategy as the Persistent Master Detail
     // A convenient property
     var archiveFilePath : String {
@@ -68,7 +64,7 @@ class Soundcloud : NSObject {
     func connect(){
         // connect
         var parameters = [String:String]()
-        parameters["client_id"] = Soundcloud.sharedInstance().clientId
+        parameters["client_id"] = Soundcloud.Constants.clientId
         parameters["redirect_uri"] = "guitarbuddy://soundcloud/connectCallback"
         parameters["response_type"] = "code"
         parameters["display"] = "popup"
@@ -85,8 +81,8 @@ class Soundcloud : NSObject {
     func authenticate(){
         
         var parameters = [String:String]()
-        parameters["client_id"] = Soundcloud.sharedInstance().clientId
-        parameters["client_secret"] = Soundcloud.sharedInstance().clientSecret
+        parameters["client_id"] = Soundcloud.Constants.clientId
+        parameters["client_secret"] = Soundcloud.Constants.clientSecret
         parameters["redirect_uri"] = "guitarbuddy://soundcloud/connectCallback"
         parameters["grant_type"] = "authorization_code"
         parameters["code"] = Soundcloud.sharedInstance().code!

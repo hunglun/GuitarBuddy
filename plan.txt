@@ -95,13 +95,17 @@ Sprint 6 [DONE]
 
 End 10th March 2016 [End 8th March]
 ---------------------------------------------------
-Sprint 7
+Sprint 7 [NOT DONE]
 1. walk through Core Data related code [1h]
    - fix bug
    - clean up
 2. enable deletion of PracticeItem from CoreData [1h]
 End 9th March 2016
 ---------------------------------------------------
+Sprint 8
+1. walk through code and clean up.
+
+End 10th March 2016.
 
 
 Features

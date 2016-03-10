@@ -75,8 +75,6 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
         
         print(filePath)
         
-//        let session = AVAudioSession.sharedInstance()
-//        try! session.setCategory(AVAudioSessionCategoryPlayAndRecord)
         try! audioRecorder = AVAudioRecorder(URL: filePath!, settings: [:])
         
         audioRecorder.delegate = self
@@ -89,13 +87,10 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
     }
     
     @IBAction func stopRecordPlay(sender: AnyObject) {
-        //Inside func stopAudio(sender: UIButton)
         configureButtonsWhenReady()
         audioRecorder.stop()
         audioPlayer?.stop()
         resetAudioPlayer()
-  //      let audioSession = AVAudioSession.sharedInstance()
- //       try! audioSession.setActive(false)
         
     }
     

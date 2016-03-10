@@ -10,7 +10,6 @@ import UIKit
 import CoreData
 import AVFoundation
 class RecordViewController : UIViewController,UITextFieldDelegate {
-    static var practiceItem : PracticeItem!
     static var practiceItemX : PracticeItemX!
     @IBOutlet var beatsPerMinuteTextField: UITextField!
     @IBOutlet var beatsPerMeasureTextField: UITextField!
@@ -41,7 +40,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     var metronome : Metronome!
     var tempo: NSTimeInterval = 40 {
         didSet {
-            if let _ = RecordViewController.practiceItem {
+            if let _ = RecordViewController.practiceItemX {
                 RecordViewController.practiceItemX.currentBpm = Int(tempo)
 
             }
@@ -65,9 +64,14 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
 
     override func viewWillAppear(animated: Bool) {
       //REMARK : don't use self.practiceItem
-        if let item = fetchLastPracticeItem() {
+        let item : PracticeItemX?
+        if RecordViewController.practiceItemX != nil {
+            item = RecordViewController.practiceItemX
+        }else{
+            item = fetchLastPracticeItem()
+        }
+        if let item = item {
             RecordViewController.practiceItemX = item
-           
             beatsPerMinuteTextField.text = String(item.targetBpm)
             beatsPerMeasureTextField.text = String(item.beatsPerMeasure)
             totalNumOfMeasuresTextField.text = String(item.numberOfMeasures)
@@ -81,26 +85,6 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     //        updateStats(item)
             progressBar.setProgress( Float(item.progress), animated: true)
         }
-        /*
-        if let item = RecordViewController.practiceItem {
-            beatsPerMinuteTextField.text = String(item.song.targetBpm)
-            beatsPerMeasureTextField.text = String(item.song.beatsPerMeasure)
-            totalNumOfMeasuresTextField.text = String(item.song.numberOfMeasures)
-            beatsPerMinuteStepper.value = Double(item.song.targetBpm)
-            beatsPerMeasureStepper.value = Double(item.song.beatsPerMeasure)
-            totalNumOfMeasuresStepper.value = Double(item.song.numberOfMeasures)
-            musicPieceTitle.text = item.song.title
-            songInfoLabel.text = "Expected Song Length: \(item.song.expectedRecordingLength) secs"
-            updateStats(item)
-            progressBar.setProgress( Float(item.progress), animated: true)
-            
-            print(item)
-            print("Progress: \(item.progress)")
-        }else{
-            progressBar.setProgress(0,animated : false)
-        }
-        */
-        
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayAndRecord, withOptions: .DefaultToSpeaker)
         } catch let error as NSError {
