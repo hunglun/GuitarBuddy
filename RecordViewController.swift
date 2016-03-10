@@ -65,21 +65,22 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
 
     override func viewWillAppear(animated: Bool) {
       //REMARK : don't use self.practiceItem
-        RecordViewController.practiceItemX  = fetchLastPracticeItem()
-        let item = RecordViewController.practiceItemX
-        beatsPerMinuteTextField.text = String(item.targetBpm)
-        beatsPerMeasureTextField.text = String(item.beatsPerMeasure)
-        totalNumOfMeasuresTextField.text = String(item.numberOfMeasures)
-        beatsPerMinuteStepper.value = Double(item.targetBpm)
-        beatsPerMeasureStepper.value = Double(item.beatsPerMeasure)
-        totalNumOfMeasuresStepper.value = Double(item.numberOfMeasures)
-        tempoLabel.text = String(item.currentBpm)
+        if let item = fetchLastPracticeItem() {
+            RecordViewController.practiceItemX = item
+           
+            beatsPerMinuteTextField.text = String(item.targetBpm)
+            beatsPerMeasureTextField.text = String(item.beatsPerMeasure)
+            totalNumOfMeasuresTextField.text = String(item.numberOfMeasures)
+            beatsPerMinuteStepper.value = Double(item.targetBpm)
+            beatsPerMeasureStepper.value = Double(item.beatsPerMeasure)
+            totalNumOfMeasuresStepper.value = Double(item.numberOfMeasures)
+            tempoLabel.text = String(item.currentBpm)
 
-        musicPieceTitle.text = String(item.title)
-        songInfoLabel.text = "Expected Song Length: \(item.expectedRecordingLength) secs"
-//        updateStats(item)
-        progressBar.setProgress( Float(item.progress), animated: true)
-  
+            musicPieceTitle.text = String(item.title)
+            songInfoLabel.text = "Expected Song Length: \(item.expectedRecordingLength) secs"
+    //        updateStats(item)
+            progressBar.setProgress( Float(item.progress), animated: true)
+        }
         /*
         if let item = RecordViewController.practiceItem {
             beatsPerMinuteTextField.text = String(item.song.targetBpm)
@@ -110,19 +111,23 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     
     
     
-    func fetchLastPracticeItem() -> PracticeItemX{
+    func fetchLastPracticeItem() -> PracticeItemX?{
         // Create the Fetch Request
         let fetchRequest = NSFetchRequest(entityName: "PracticeItemX")
         
         // Execute the Fetch Request
         do {
-            let items = try sharedContext.executeFetchRequest(fetchRequest) as! [PracticeItemX]
+            if let items = try sharedContext.executeFetchRequest(fetchRequest) as? [PracticeItemX] {
             //TODO: search for the last practice item.
-            return items[0]
+                if items.count > 0 {
+                    return items[0]
+                }
+            }
         } catch _ {
             //TODO: understand what it means
-            return PracticeItemX()
+            return nil
         }
+        return nil
     }
     var sharedContext : NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext

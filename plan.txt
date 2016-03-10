@@ -86,20 +86,27 @@ Sprint 5 [DONE]
 
 End 6th March 2016
 ---------------------------------------------------
-Sprint 6
+Sprint 6 [DONE]
 1. create a model for PracticeItem [1h][DONE]
 2. enable addition of PracticeItem to CoreData [1h][DONE]
 3. load last saved practice Item to Practice View [30min][DONE]
 4. persist the current practiceItem ID [30min][DONE]
 5. populate Practice List with data from CoreData [1h][DONE]
-6. enable deletion of PracticeItem from CoreData [1h]
 
-End 10th March 2016
+End 10th March 2016 [End 8th March]
 ---------------------------------------------------
+Sprint 7
+1. walk through Core Data related code [1h]
+   - fix bug
+   - clean up
+2. enable deletion of PracticeItem from CoreData [1h]
+End 9th March 2016
+---------------------------------------------------
+
 
 Features
 1. practice view controller shows the last practised piece
-2. tempo persists in record view
+2. tempo persists in record view [DONE]
 3. update record track in soundcloud
 4. check if access token is valid. If not, request access token again.
 5. add a fast tempo button to quicken playback.
