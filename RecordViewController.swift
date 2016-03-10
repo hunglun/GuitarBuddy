@@ -102,9 +102,8 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         // Execute the Fetch Request
         do {
             if let items = try sharedContext.executeFetchRequest(fetchRequest) as? [PracticeItemX] {
-            //TODO: search for the last practice item.
                 if items.count > 0 {
-                    return items[0]
+                    return items[Soundcloud.sharedInstance().lastPracticeItemIndex ?? 0]
                 }
             }
         } catch _ {
@@ -137,8 +136,8 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func publishButtonTouchUpInside(sender: UIButton) {
-        let userId = Soundcloud.sharedInstance().userId //?? "4793009"
-        let accessToken = Soundcloud.sharedInstance().accessToken //?? "1-182209-4793009-f9e477d058e6b69"
+        let userId = Soundcloud.sharedInstance().userId
+        let accessToken = Soundcloud.sharedInstance().accessToken
         if userId == nil || accessToken == nil {
             Soundcloud.sharedInstance().connect()
             return

@@ -124,6 +124,8 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
         /* Push the movie detail view */
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
         RecordViewController.practiceItemX = PracticeItemTableViewController.practiceItems[indexPath.row]
+        Soundcloud.sharedInstance().lastPracticeItemIndex = indexPath.row
+        Soundcloud.sharedInstance().saveUserAccessInfo()
         presentViewController(controller, animated: false, completion: nil)
     
     }

@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		FA2CBB9F1C8B008700F051A2 /* PracticeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */; };
 		FA2CBBA11C8B099600F051A2 /* PracticeItemTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBBA01C8B099600F051A2 /* PracticeItemTableViewController.swift */; };
 		FA2CBBA51C8C24C600F051A2 /* PracticeItemSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA2CBBA41C8C24C600F051A2 /* PracticeItemSettings.swift */; };
 		FA30EAE91C8F097200C81A5A /* PracticeItemX.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA30EAE81C8F097200C81A5A /* PracticeItemX.swift */; };
@@ -25,6 +24,7 @@
 		FA970D741C829EF400E9EFCB /* RecordPlayAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D731C829EF400E9EFCB /* RecordPlayAudio.swift */; };
 		FA970D771C829FCD00E9EFCB /* RecordedAudio.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */; };
 		FA970D791C82B68700E9EFCB /* MetronomeSubviewcontroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA970D781C82B68700E9EFCB /* MetronomeSubviewcontroller.swift */; };
+		FABB3BCC1C91D31A0092B603 /* PracticeItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = FABB3BCB1C91D31A0092B603 /* PracticeItem.swift */; };
 		FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */; };
 		FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5721C8629B700B5DD78 /* SCTrack.swift */; };
 		FAC3C5751C86540E00B5DD78 /* SCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC3C5741C86540E00B5DD78 /* SCConstants.swift */; };
@@ -32,7 +32,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItem.swift; sourceTree = "<group>"; };
 		FA2CBBA01C8B099600F051A2 /* PracticeItemTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItemTableViewController.swift; sourceTree = "<group>"; };
 		FA2CBBA41C8C24C600F051A2 /* PracticeItemSettings.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItemSettings.swift; sourceTree = "<group>"; };
 		FA30EAE81C8F097200C81A5A /* PracticeItemX.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItemX.swift; sourceTree = "<group>"; };
@@ -52,6 +51,7 @@
 		FA970D731C829EF400E9EFCB /* RecordPlayAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordPlayAudio.swift; sourceTree = "<group>"; };
 		FA970D761C829FCD00E9EFCB /* RecordedAudio.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordedAudio.swift; sourceTree = "<group>"; };
 		FA970D781C82B68700E9EFCB /* MetronomeSubviewcontroller.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MetronomeSubviewcontroller.swift; sourceTree = "<group>"; };
+		FABB3BCB1C91D31A0092B603 /* PracticeItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PracticeItem.swift; sourceTree = "<group>"; };
 		FAC3C5701C8628BA00B5DD78 /* SoundTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SoundTableViewController.swift; sourceTree = "<group>"; };
 		FAC3C5721C8629B700B5DD78 /* SCTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCTrack.swift; sourceTree = "<group>"; };
 		FAC3C5741C86540E00B5DD78 /* SCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SCConstants.swift; sourceTree = "<group>"; };
@@ -84,7 +84,7 @@
 		FA2CBB9D1C8B006F00F051A2 /* PracticeItem */ = {
 			isa = PBXGroup;
 			children = (
-				FA2CBB9E1C8B008700F051A2 /* PracticeItem.swift */,
+				FABB3BCB1C91D31A0092B603 /* PracticeItem.swift */,
 				FA30EAE81C8F097200C81A5A /* PracticeItemX.swift */,
 				FA2CBBA41C8C24C600F051A2 /* PracticeItemSettings.swift */,
 			);
@@ -252,8 +252,8 @@
 				FAC3C5771C8655B100B5DD78 /* SCHttpRequestHelper.swift in Sources */,
 				FA30EAEB1C8F115800C81A5A /* CoreDataStackManager.swift in Sources */,
 				FA2CBBA11C8B099600F051A2 /* PracticeItemTableViewController.swift in Sources */,
-				FA2CBB9F1C8B008700F051A2 /* PracticeItem.swift in Sources */,
 				FAC3C5731C8629B700B5DD78 /* SCTrack.swift in Sources */,
+				FABB3BCC1C91D31A0092B603 /* PracticeItem.swift in Sources */,
 				FAC3C5711C8628BA00B5DD78 /* SoundTableViewController.swift in Sources */,
 				FA30EAE91C8F097200C81A5A /* PracticeItemX.swift in Sources */,
 				FA2CBBA51C8C24C600F051A2 /* PracticeItemSettings.swift in Sources */,

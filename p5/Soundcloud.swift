@@ -17,6 +17,7 @@ class Soundcloud : NSObject {
     var code : String?
     var accessToken: String?
   
+    var lastPracticeItemIndex : Int?
     // Here we use the same filePath strategy as the Persistent Master Detail
     // A convenient property
     var archiveFilePath : String {
@@ -37,6 +38,7 @@ class Soundcloud : NSObject {
             
             accessToken = dict["access_token"] as? String
             userId = dict["userId"] as? String
+            lastPracticeItemIndex = dict["lastPracticeItemIndex"] as? Int
         }
     }
     func saveUserAccessInfo() {
@@ -47,7 +49,8 @@ class Soundcloud : NSObject {
         
         let dictionary = [
             "access_token" : accessToken!,
-            "userId" : userId!
+            "userId" : userId!,
+            "lastPracticeItemIndex" :lastPracticeItemIndex ?? 0
         ]
         
         // Archive the dictionary into the filePath

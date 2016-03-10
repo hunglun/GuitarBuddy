@@ -102,14 +102,13 @@ Sprint 7 [NOT DONE]
 2. enable deletion of PracticeItem from CoreData [1h]
 End 9th March 2016
 ---------------------------------------------------
-Sprint 8
-1. walk through code and clean up.
-
+Sprint 8 [30%]
+1. walk through code and clean up. [30%]
 End 10th March 2016.
-
+---------------------------------------------------
 
 Features
-1. practice view controller shows the last practised piece
+1. practice view controller shows the last practised piece[DONE]
 2. tempo persists in record view [DONE]
 3. update record track in soundcloud
 4. check if access token is valid. If not, request access token again.
