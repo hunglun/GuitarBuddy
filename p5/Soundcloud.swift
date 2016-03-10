@@ -48,8 +48,8 @@ class Soundcloud : NSObject {
         // It represents the zoom level of the map.
         
         let dictionary = [
-            "access_token" : accessToken!,
-            "userId" : userId!,
+            "access_token" : accessToken ?? "",
+            "userId" : userId ?? "",
             "lastPracticeItemIndex" :lastPracticeItemIndex ?? 0
         ]
         
