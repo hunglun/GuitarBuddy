@@ -234,7 +234,7 @@ class Soundcloud : NSObject {
         
         userId = Soundcloud.userId //?? "4793009"
         accessToken = Soundcloud.accessToken //?? "1-182209-4793009-f9e477d058e6b69"
-        if userId == nil || accessToken == nil {
+        if userId == "" || accessToken == "" {
             Soundcloud.connect()
             return
         }

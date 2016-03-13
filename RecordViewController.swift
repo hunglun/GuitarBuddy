@@ -134,7 +134,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     @IBAction func publishButtonTouchUpInside(sender: UIButton) {
         let userId = Soundcloud.userId
         let accessToken = Soundcloud.accessToken
-        if userId == nil || accessToken == nil {
+        if userId == "" || accessToken == "" {
             Soundcloud.connect()
             return
         }

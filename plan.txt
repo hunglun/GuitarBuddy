@@ -114,6 +114,13 @@ Begins 13th March 2016
 4. With these thoughts at heart, I shall continue this project
 Ends 13th March 2016
 ---------------------------------------------------
+Sprint 10
+1. Make networking code in SCHttpRequestHelper.swift less intimidating
+   - see sample code from OnTheMap
+2. If practiceItemList is empty, execute addPracticeItem() in recordviewcontroller.viewDidLoad()
+3. Save Recording to Core Data
+End 16th March 2016
+
 
 Features
 1. practice view controller shows the last practised piece[DONE]
