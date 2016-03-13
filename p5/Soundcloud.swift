@@ -14,7 +14,12 @@ class Soundcloud : NSObject {
     static var userId : String?
     static var code : String?
     static var accessToken: String?
-      static var lastPracticeItemIndex : Int?
+    static var lastPracticeItemIndex : Int?  {
+        didSet {
+            saveUserAccessInfo()
+        }
+    }
+
 
     static var archiveFilePath : String {
         let manager = NSFileManager.defaultManager()

@@ -52,21 +52,6 @@ class PracticeItemX : NSManagedObject {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
 
-    /*
-    func practiceItemToDict(item : PracticeItem) -> [String: AnyObject]{
-        let dictionary = [PracticeItemX.Keys.practiceTabForegroundTime  : item.stats.practiceTabForegroundTime ,
-            PracticeItemX.Keys.metronomeUsageTime  : item.stats.metronomeUsageTime ,
-            PracticeItemX.Keys.recorderUsageTime  : item.stats.recorderUsageTime ,
-            PracticeItemX.Keys.title  : item.song.title ,
-            PracticeItemX.Keys.lastPracticeDate  : NSDate() ,
-            PracticeItemX.Keys.targetBpm  : item.song.targetBpm ,
-            PracticeItemX.Keys.beatsPerMeasure  : item.song.beatsPerMeasure ,
-            PracticeItemX.Keys.numberOfMeasures  : item.song.numberOfMeasures ,
-            PracticeItemX.Keys.currentBpm  : item.practice.currentBpm ,
-            PracticeItemX.Keys.lastRecordingLength  : item.practice.lastRecordingLength ]
-        return dictionary
-    }
-*/
     init(dictionary: [String : AnyObject], context: NSManagedObjectContext) {
         let entity =  NSEntityDescription.entityForName("PracticeItemX", inManagedObjectContext: context)!
         super.init(entity: entity,insertIntoManagedObjectContext: context)

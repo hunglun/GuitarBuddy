@@ -18,32 +18,24 @@ class PracticeItemTableViewController: UIViewController {
     @IBOutlet weak var practiceItemTableView: UITableView!
     
     // MARK: Life Cycle
-    func addPracticeItemToCoreData(item : PracticeItem)-> PracticeItemX{
-        let dictionary = [PracticeItemX.Keys.practiceTabForegroundTime  : item.stats.practiceTabForegroundTime ,
-            PracticeItemX.Keys.metronomeUsageTime  : item.stats.metronomeUsageTime ,
-            PracticeItemX.Keys.recorderUsageTime  : item.stats.recorderUsageTime ,
-            PracticeItemX.Keys.title  : item.song.title ,
-            PracticeItemX.Keys.lastPracticeDate  : NSDate() ,
-            PracticeItemX.Keys.targetBpm  : item.song.targetBpm ,
-            PracticeItemX.Keys.beatsPerMeasure  : item.song.beatsPerMeasure ,
-            PracticeItemX.Keys.numberOfMeasures  : item.song.numberOfMeasures ,
-            PracticeItemX.Keys.currentBpm  : item.practice.currentBpm ,
-            PracticeItemX.Keys.lastRecordingLength  : item.practice.lastRecordingLength ]
-        
-        let item = PracticeItemX(dictionary : dictionary,context: self.sharedContext)
-        CoreDataStackManager.sharedInstance().saveContext()
-        return item
-    }
-
     func addPracticeItem(){
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
-        let stats = Stats(practiceTabForegroundTime: 0, metronomeUsageTime: 0, recorderUsageTime: 0)
-        let song = Song(title: "Untitled", targetBpm: 60, beatsPerMeasure: 4, numberOfMeasures: 16)
-        let practice = Practice(currentBpm: 40, lastRecordingLength: 0)
-        let item = PracticeItem(stats: stats, song: song, practice: practice)
-        let itemX = addPracticeItemToCoreData(item)
+        let dictionary = [PracticeItemX.Keys.practiceTabForegroundTime  : 0,
+            PracticeItemX.Keys.metronomeUsageTime  : 0,
+            PracticeItemX.Keys.recorderUsageTime  : 0,
+            PracticeItemX.Keys.title  : "Untitled",
+            PracticeItemX.Keys.lastPracticeDate  : NSDate() ,
+            PracticeItemX.Keys.targetBpm  : 60,
+            PracticeItemX.Keys.beatsPerMeasure  : 4,
+            PracticeItemX.Keys.numberOfMeasures  : 16,
+            PracticeItemX.Keys.currentBpm  : 40,
+            PracticeItemX.Keys.lastRecordingLength  : 0]
+        
+        let itemX = PracticeItemX(dictionary : dictionary,context: self.sharedContext)
+        CoreDataStackManager.sharedInstance().saveContext()
         PracticeItemTableViewController.practiceItems.append(itemX)
-        //TODO: think about how to pass item to RecordViewController
+        RecordViewController.practiceItemX = itemX
+        Soundcloud.lastPracticeItemIndex = PracticeItemTableViewController.practiceItems.count - 1
         presentViewController(controller, animated: false, completion: nil)
     }
     override func viewDidLoad() {

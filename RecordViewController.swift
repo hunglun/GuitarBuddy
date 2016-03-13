@@ -48,10 +48,6 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             tempoStepper.value = Double(tempo)
         }
     }
-    func updateStats(item : PracticeItem){
-      statsInfoLabel.text = "In Practice Tab Time: \(item.stats.practiceTabForegroundTime) min | Metronome Usage Time : \(item.stats.metronomeUsageTime) min | Recorder Usage Time : \(item.stats.recorderUsageTime) min "
-//        print("| Last Record: \(item.practice.lastRecordingLength) secs| Progress: \(item.progress * 100)%"
-    }
     
     func save(){
         RecordViewController.practiceItemX.title = NSString(string: musicPieceTitle.text!)
@@ -82,7 +78,6 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
 
             musicPieceTitle.text = String(item.title)
             songInfoLabel.text = "Expected Song Length: \(item.expectedRecordingLength) secs"
-    //        updateStats(item)
             progressBar.setProgress( Float(item.progress), animated: true)
         }
         do {
@@ -118,6 +113,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save")
+        Soundcloud.retrieveArchivedItems()
         musicPieceTitle.delegate = self
         //metronome
         metronomeStartStopState = false
