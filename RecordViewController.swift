@@ -103,7 +103,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         do {
             if let items = try sharedContext.executeFetchRequest(fetchRequest) as? [PracticeItemX] {
                 if items.count > 0 {
-                    return items[Soundcloud.sharedInstance().lastPracticeItemIndex ?? 0]
+                    return items[Soundcloud.lastPracticeItemIndex ?? 0]
                 }
             }
         } catch _ {
@@ -136,14 +136,14 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     }
     
     @IBAction func publishButtonTouchUpInside(sender: UIButton) {
-        let userId = Soundcloud.sharedInstance().userId
-        let accessToken = Soundcloud.sharedInstance().accessToken
+        let userId = Soundcloud.userId
+        let accessToken = Soundcloud.accessToken
         if userId == nil || accessToken == nil {
-            Soundcloud.sharedInstance().connect()
+            Soundcloud.connect()
             return
         }
         if let filePath = filePath {
-            Soundcloud.sharedInstance().upload(filePath, title: String(RecordViewController.practiceItemX.title), controller: self)
+            Soundcloud.upload(filePath, title: String(RecordViewController.practiceItemX.title), controller: self)
         }
     }
     

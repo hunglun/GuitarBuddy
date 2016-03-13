@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let key = query.componentsSeparatedByString("=")[0]
             let value = query.componentsSeparatedByString("=")[1]
             if (key == "code") {
-                Soundcloud.sharedInstance().code = value
-                Soundcloud.sharedInstance().authenticate()
+                Soundcloud.code = value
+                Soundcloud.authenticate()
             }
         
         }

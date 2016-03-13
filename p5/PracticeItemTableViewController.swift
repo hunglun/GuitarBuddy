@@ -102,7 +102,7 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
         
         /*
         if let posterPath = track.posterPath {
-        Soundcloud.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandler: { (imageData, error) in
+        Soundcloud.taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandler: { (imageData, error) in
         if let image = UIImage(data: imageData!) {
         dispatch_async(dispatch_get_main_queue()) {
         cell.imageView!.image = image
@@ -124,8 +124,8 @@ extension PracticeItemTableViewController: UITableViewDelegate, UITableViewDataS
         /* Push the movie detail view */
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
         RecordViewController.practiceItemX = PracticeItemTableViewController.practiceItems[indexPath.row]
-        Soundcloud.sharedInstance().lastPracticeItemIndex = indexPath.row
-        Soundcloud.sharedInstance().saveUserAccessInfo()
+        Soundcloud.lastPracticeItemIndex = indexPath.row
+        Soundcloud.saveUserAccessInfo()
         presentViewController(controller, animated: false, completion: nil)
     
     }

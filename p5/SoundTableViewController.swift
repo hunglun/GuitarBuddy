@@ -31,7 +31,7 @@ class SoundTableViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        Soundcloud.sharedInstance().getTracks { tracks, error in
+        Soundcloud.getTracks { tracks, error in
             if let tracks = tracks {
                 self.tracks = tracks
                 dispatch_async(dispatch_get_main_queue()) {
@@ -68,7 +68,7 @@ extension SoundTableViewController: UITableViewDelegate, UITableViewDataSource {
         
 /* 
         if let posterPath = track.posterPath {
-            Soundcloud.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandler: { (imageData, error) in
+            Soundcloud.taskForGETImage(TMDBClient.PosterSizes.RowPoster, filePath: posterPath, completionHandler: { (imageData, error) in
                 if let image = UIImage(data: imageData!) {
                     dispatch_async(dispatch_get_main_queue()) {
                         cell.imageView!.image = image

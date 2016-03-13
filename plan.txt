@@ -102,9 +102,17 @@ Sprint 7 [NOT DONE]
 2. enable deletion of PracticeItem from CoreData [1h]
 End 9th March 2016
 ---------------------------------------------------
-Sprint 8 [30%]
+Sprint 8 [30% NOT DONE]
 1. walk through code and clean up. [30%]
 End 10th March 2016.
+---------------------------------------------------
+Sprint 9
+Begins 13th March 2016
+1. I decide to make this project an open source.
+2. I wish users benefit from this project.
+3. I want to make things easy for future maintainers and contributors of this project.
+4. With these thoughts at heart, I shall continue this project
+Ends 13th March 2016
 ---------------------------------------------------
 
 Features

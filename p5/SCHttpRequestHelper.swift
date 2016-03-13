@@ -25,7 +25,7 @@ extension NSMutableData {
 extension Soundcloud {
     
     /* Helper: Given raw JSON, return a usable Foundation object */
-    class func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
+    static func parseJSONWithCompletionHandler(data: NSData, completionHandler: (result: AnyObject!, error: NSError?) -> Void) {
         
         var parsedResult: AnyObject!
         do {
@@ -37,7 +37,7 @@ extension Soundcloud {
         
         completionHandler(result: parsedResult, error: nil)
     }
-    func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, paths: [String]?, boundary: String) -> NSData {
+    static func createBodyWithParameters(parameters: [String: String]?, filePathKey: String?, paths: [String]?, boundary: String) -> NSData {
         let body = NSMutableData()
         
         if parameters != nil {
@@ -71,7 +71,7 @@ extension Soundcloud {
     ///
     /// - returns:            The boundary string that consists of "Boundary-" followed by a UUID string.
     
-    func generateBoundaryString() -> String {
+    static func generateBoundaryString() -> String {
         return "Boundary-\(NSUUID().UUIDString)"
     }
     
@@ -83,7 +83,7 @@ extension Soundcloud {
     ///
     /// - returns:                Returns the mime type if successful. Returns application/octet-stream if unable to determine mime type.
     
-    func mimeTypeForPath(path: String) -> String {
+    static func mimeTypeForPath(path: String) -> String {
         let url = NSURL(fileURLWithPath: path)
         let pathExtension = url.pathExtension
         
@@ -94,7 +94,7 @@ extension Soundcloud {
         }
         return "application/octet-stream";
     }
-    func taskForPOSTMethodForFileUpload(method: String, parameters: [String : AnyObject], jsonBody: [String:String], filePaths : [String]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    static func taskForPOSTMethodForFileUpload(method: String, parameters: [String : AnyObject], jsonBody: [String:String], filePaths : [String]?, completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 2/3. Build the URL and configure the request */
         let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + self.escapedParameters(parameters)
@@ -155,7 +155,7 @@ extension Soundcloud {
 
     // MARK: GET
     
-    func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
+    static func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
         let mutableParameters = parameters

@@ -11,16 +11,12 @@ import UIKit
 
 
 class Soundcloud : NSObject {
-    var firstName : String!
-    var lastName : String!
-    var userId : String?
-    var code : String?
-    var accessToken: String?
-  
-    var lastPracticeItemIndex : Int?
-    // Here we use the same filePath strategy as the Persistent Master Detail
-    // A convenient property
-    var archiveFilePath : String {
+    static var userId : String?
+    static var code : String?
+    static var accessToken: String?
+      static var lastPracticeItemIndex : Int?
+
+    static var archiveFilePath : String {
         let manager = NSFileManager.defaultManager()
         let url = manager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first! as NSURL
         return url.URLByAppendingPathComponent("p5SoundcloudArchive").path!
@@ -28,9 +24,9 @@ class Soundcloud : NSObject {
     
     override init() {
         super.init()
-        retrieveArchivedItems()
+        Soundcloud.retrieveArchivedItems()
     }
-    func retrieveArchivedItems() {
+    static func retrieveArchivedItems() {
         
         // if we can unarchive a dictionary, we will use it to set the map back to its
         // previous center and span
@@ -41,7 +37,7 @@ class Soundcloud : NSObject {
             lastPracticeItemIndex = dict["lastPracticeItemIndex"] as? Int
         }
     }
-    func saveUserAccessInfo() {
+    static func saveUserAccessInfo() {
         
         // Place the "center" and "span" of the map into a dictionary
         // The "span" is the width and height of the map in degrees.
@@ -57,14 +53,14 @@ class Soundcloud : NSObject {
         NSKeyedArchiver.archiveRootObject(dictionary, toFile: archiveFilePath)
     }
 
-    func authenticateCallbackHandler(success: Bool, errorString: String?)-> Void{
+    static func authenticateCallbackHandler(success: Bool, errorString: String?)-> Void{
         if success {
             print("Authentication successful!")
         }else{
             print(errorString)
         }
     }
-    func connect(){
+    static func connect(){
         // connect
         var parameters = [String:String]()
         parameters["client_id"] = Soundcloud.Constants.clientId
@@ -81,14 +77,14 @@ class Soundcloud : NSObject {
         
         
     }
-    func authenticate(){
+    static func authenticate(){
         
         var parameters = [String:String]()
         parameters["client_id"] = Soundcloud.Constants.clientId
         parameters["client_secret"] = Soundcloud.Constants.clientSecret
         parameters["redirect_uri"] = "guitarbuddy://soundcloud/connectCallback"
         parameters["grant_type"] = "authorization_code"
-        parameters["code"] = Soundcloud.sharedInstance().code!
+        parameters["code"] = Soundcloud.code!
         
         let urlString = "https://api.soundcloud.com/oauth2/token"
         print(urlString)
@@ -109,15 +105,15 @@ class Soundcloud : NSObject {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // Handle error…
-                self.authenticateCallbackHandler(false,errorString: "Bad Connection")
+                authenticateCallbackHandler(false,errorString: "Bad Connection")
                 return
             }
             print(NSString(data: data!, encoding: NSUTF8StringEncoding))
             do {
                 if let parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments) as? NSDictionary,
                     accessToken = parsedResult["access_token"] as? String{
-                        Soundcloud.sharedInstance().accessToken = accessToken
-                        Soundcloud.sharedInstance().getUserId(accessToken){_,_ in }
+                        Soundcloud.accessToken = accessToken
+                        Soundcloud.getUserId(accessToken){_,_ in }
                 }else{
                     print("Invalid JSON Object")
                 }
@@ -130,7 +126,7 @@ class Soundcloud : NSObject {
         
     }
     
-    func escapedParameters(parameters: [String : AnyObject]) -> String {
+    static func escapedParameters(parameters: [String : AnyObject]) -> String {
         
         var urlVars = [String]()
         
@@ -150,9 +146,9 @@ class Soundcloud : NSObject {
         return (!urlVars.isEmpty ? "?" : "") + urlVars.joinWithSeparator("&")
     }
 
-    func upload(file : NSURL, title: String, controller : UIViewController){
+    static func upload(file : NSURL, title: String, controller : UIViewController){
         
-        let accessToken = Soundcloud.sharedInstance().accessToken
+        let accessToken = Soundcloud.accessToken
         let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken!]
         let mutableMethod : String = Soundcloud.Methods.Track
         print(file.path!)
@@ -170,7 +166,7 @@ class Soundcloud : NSObject {
                 //              completionHandler(result: nil, error: error)
                 dispatch_async(dispatch_get_main_queue()) {
 
-                    let alert = Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Fails")
+                    let alert = Soundcloud.warningAlertView(controller, messageString: "Upload Fails")
                     dispatch_async(dispatch_get_main_queue()) {
                         controller.presentViewController(alert, animated: true, completion: nil)
                     }
@@ -183,7 +179,7 @@ class Soundcloud : NSObject {
 
                 dispatch_async(dispatch_get_main_queue()) {
                     
-                    let alert = Soundcloud.sharedInstance().warningAlertView(controller, messageString: "Upload Successful.")
+                    let alert = Soundcloud.warningAlertView(controller, messageString: "Upload Successful.")
                     dispatch_async(dispatch_get_main_queue()) {
                         controller.presentViewController(alert, animated: true, completion: nil)
                     }
@@ -203,8 +199,8 @@ class Soundcloud : NSObject {
         
     }
 
-    func getUserId(accessToken : String, completionHandler: (result: String?, error: NSError?) -> Void) {
-//        accessToken = Soundcloud.sharedInstance().accessToken ?? "1-182209-4793009-f9e477d058e6b69"
+    static func getUserId(accessToken : String, completionHandler: (result: String?, error: NSError?) -> Void) {
+//        accessToken = Soundcloud.accessToken ?? "1-182209-4793009-f9e477d058e6b69"
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken]
@@ -219,9 +215,9 @@ class Soundcloud : NSObject {
             } else {
                 
                 if let result = JSONResult[JSONResponseKeys.UserID] as? Int {
-                    self.userId = "\(result)"
-                    self.saveUserAccessInfo()
-                    completionHandler(result: self.userId, error: nil)
+                    Soundcloud.userId = "\(result)"
+                    saveUserAccessInfo()
+                    completionHandler(result: Soundcloud.userId, error: nil)
                 } else {
                     completionHandler(result: nil, error: NSError(domain: "get tracks parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse getTracks"]))
                 }
@@ -229,12 +225,12 @@ class Soundcloud : NSObject {
         }
         
     }
-    func getTracks(completionHandler: (result: [SCTrack]?, error: NSError?) -> Void) {
+    static func getTracks(completionHandler: (result: [SCTrack]?, error: NSError?) -> Void) {
         
-        userId = Soundcloud.sharedInstance().userId //?? "4793009"
-        accessToken = Soundcloud.sharedInstance().accessToken //?? "1-182209-4793009-f9e477d058e6b69"
+        userId = Soundcloud.userId //?? "4793009"
+        accessToken = Soundcloud.accessToken //?? "1-182209-4793009-f9e477d058e6b69"
         if userId == nil || accessToken == nil {
-            Soundcloud.sharedInstance().connect()
+            Soundcloud.connect()
             return
         }
         
@@ -263,7 +259,7 @@ class Soundcloud : NSObject {
 
     }
     /* Helper: Substitute the key for the value that is contained within the method name */
-    class func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
+    static func subtituteKeyInMethod(method: String, key: String, value: String) -> String? {
         if method.rangeOfString("{\(key)}") != nil {
             return method.stringByReplacingOccurrencesOfString("{\(key)}", withString: value)
         } else {
@@ -272,7 +268,7 @@ class Soundcloud : NSObject {
     }
 
 
-    func warningAlertView(parent : UIViewController, messageString : String) -> UIAlertController{
+    static func warningAlertView(parent : UIViewController, messageString : String) -> UIAlertController{
         let alert = UIAlertController(title: "", message: messageString, preferredStyle: .Alert)
         let dismissAction = UIAlertAction(title: "Dismiss",
                                           style: .Cancel,
@@ -284,13 +280,5 @@ class Soundcloud : NSObject {
 
     
     
-    class func sharedInstance() -> Soundcloud {
-        
-        struct Singleton {
-            static var sharedInstance = Soundcloud()
-        }
-        
-        return Singleton.sharedInstance
-    }
 
 }
