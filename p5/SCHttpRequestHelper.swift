@@ -158,11 +158,9 @@ extension Soundcloud {
     static func taskForGETMethod(method: String, parameters: [String : AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
         /* 1. Set the parameters */
-        let mutableParameters = parameters
-//        mutableParameters[ParameterKeys.ApiKey] = Constants.ApiKey
         
         /* 2/3. Build the URL and configure the request */
-        let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + self.escapedParameters(mutableParameters)
+        let urlString = Soundcloud.Constants.SoundcloudSecureBaseUrl + method + self.escapedParameters(parameters)
         let url = NSURL(string: urlString)!
         let request = NSURLRequest(URL: url)
         let session = NSURLSession.sharedSession()

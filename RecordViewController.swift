@@ -138,6 +138,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             Soundcloud.connect()
             return
         }
+        //TODO: user has to press this button again to upload file. Is there a better way?
         if let filePath = filePath {
             Soundcloud.upload(filePath, title: String(RecordViewController.practiceItemX.title), controller: self)
         }

@@ -62,6 +62,18 @@ class Soundcloud : NSObject {
         if success {
             print("Authentication successful!")
         }else{
+            if var topController = UIApplication.sharedApplication().keyWindow?.rootViewController {
+                while let presentedViewController = topController.presentedViewController {
+                    topController = presentedViewController
+                }
+                let alert = Soundcloud.warningAlertView(topController, messageString: errorString ?? "Authentication Fails")
+                dispatch_async(dispatch_get_main_queue()) {
+                    topController.presentViewController(alert, animated: true, completion: nil)
+                }
+
+                // topController should now be your topmost view controller
+            }
+
             print(errorString)
         }
     }
@@ -110,7 +122,8 @@ class Soundcloud : NSObject {
         let session = NSURLSession.sharedSession()
         let task = session.dataTaskWithRequest(request) { data, response, error in
             if error != nil { // Handle error…
-                authenticateCallbackHandler(false,errorString: "Bad Connection")
+                authenticateCallbackHandler(false,errorString: "Authentication Fails: Bad Connection")
+
                 return
             }
             print(NSString(data: data!, encoding: NSUTF8StringEncoding))
@@ -181,31 +194,31 @@ class Soundcloud : NSObject {
             } else {
                 print(JSONResult)
                 print("success upload")
-
-                dispatch_async(dispatch_get_main_queue()) {
+                if let _ = JSONResult[Soundcloud.JSONBodyKeys.TrackID] as? Int {
                     
-                    let alert = Soundcloud.warningAlertView(controller, messageString: "Upload Successful.")
+                    dispatch_async(dispatch_get_main_queue()) {
+                        
+                        let alert = Soundcloud.warningAlertView(controller, messageString: "Upload Successful.")
+                        dispatch_async(dispatch_get_main_queue()) {
+                            controller.presentViewController(alert, animated: true, completion: nil)
+                        }
+                    }
+                }else{
+                
+                    let alert = Soundcloud.warningAlertView(controller, messageString: "Upload Fails")
                     dispatch_async(dispatch_get_main_queue()) {
                         controller.presentViewController(alert, animated: true, completion: nil)
                     }
 
-                    
                 }
-    //            completionHandler(result: results, error: nil)
-                
-                /*                if let results = JSONResult[Soundcloud.JSONResponseKeys.StatusCode] as? Int {
-                    completionHandler(result: results, error: nil)
-                } else {
-                    completionHandler(result: nil, error: NSError(domain: "postToFavoritesList parsing", code: 0, userInfo: [NSLocalizedDescriptionKey: "Could not parse postToFavoritesList"]))
-                }
- */           }
+           }
         }
 
         
     }
 
     static func getUserId(accessToken : String, completionHandler: (result: String?, error: NSError?) -> Void) {
-//        accessToken = Soundcloud.accessToken ?? "1-182209-4793009-f9e477d058e6b69"
+
         
         /* 1. Specify parameters, method (if has {key}), and HTTP body (if POST) */
         let parameters = [Soundcloud.ParameterKeys.AccessToken: accessToken]
