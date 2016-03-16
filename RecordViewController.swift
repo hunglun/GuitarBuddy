@@ -67,7 +67,9 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
             PracticeItemX.Keys.beatsPerMeasure  : 4,
             PracticeItemX.Keys.numberOfMeasures  : 16,
             PracticeItemX.Keys.currentBpm  : 40,
-            PracticeItemX.Keys.lastRecordingLength  : 0]
+            PracticeItemX.Keys.lastRecordingLength  : 0,
+            PracticeItemX.Keys.soundLocalPath : "",
+            PracticeItemX.Keys.id : PracticeItemTableViewController.practiceItems.count]
         
         let itemX = PracticeItemX(dictionary : dictionary,context: self.sharedContext)
         CoreDataStackManager.sharedInstance().saveContext()
@@ -104,7 +106,14 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         } catch let error as NSError {
             print(error.localizedDescription)
         }
-
+        if RecordViewController.practiceItemX.lastRecordingLength != 0 {
+            configureButtonsWhenReady()
+            setupAudioPlayer(getSoundLocalPath()!)
+        }else{
+            stopRecordPlayButton.enabled = false
+            recordButton.enabled = true
+            playAudioButton.enabled = false
+        }
     }
     
     
@@ -139,10 +148,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         metronome = Metronome()
         tempo = 40
 
-        //recorder
-        stopRecordPlayButton.enabled = false
-        recordButton.enabled = true
-        playAudioButton.enabled = false
+     
     }
     
     override func didReceiveMemoryWarning() {

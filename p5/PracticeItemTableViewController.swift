@@ -30,7 +30,9 @@ class PracticeItemTableViewController: UIViewController {
             PracticeItemX.Keys.beatsPerMeasure  : 4,
             PracticeItemX.Keys.numberOfMeasures  : 16,
             PracticeItemX.Keys.currentBpm  : 40,
-            PracticeItemX.Keys.lastRecordingLength  : 0]
+            PracticeItemX.Keys.lastRecordingLength  : 0,
+            PracticeItemX.Keys.soundLocalPath : "",
+            PracticeItemX.Keys.id : PracticeItemTableViewController.practiceItems.count]
         
         let itemX = PracticeItemX(dictionary : dictionary,context: self.sharedContext)
         CoreDataStackManager.sharedInstance().saveContext()

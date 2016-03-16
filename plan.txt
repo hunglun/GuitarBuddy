@@ -114,14 +114,16 @@ Begins 13th March 2016
 4. With these thoughts at heart, I shall continue this project
 Ends 13th March 2016
 ---------------------------------------------------
-Sprint 10
+Sprint 10 [DONE]
 1. Make networking code in SCHttpRequestHelper.swift less intimidating
    - see sample code from OnTheMap [DONE]
 2. If practiceItemList is empty, execute addPracticeItem() in recordviewcontroller.viewDidLoad()[DONE]
-3. Save Recording to Core Data
+3. Save Recording to Core Data [2h] [DONE]
 End 16th March 2016
 
-
+Sprint 11 [DONE]
+1. add a fast tempo button to quicken playback. [3h]
+2. 
 Features
 1. practice view controller shows the last practised piece[DONE]
 2. tempo persists in record view [DONE]

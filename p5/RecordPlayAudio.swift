@@ -44,11 +44,10 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
             } catch let error as NSError {
                 print(error.localizedDescription)
             }
-
             setupAudioPlayer(recorder.url)
             configureButtonsWhenReady()
             RecordViewController.practiceItemX.lastRecordingLength = Int(audioPlayer.duration)
-
+            CoreDataStackManager.sharedInstance().saveContext()
         }
     }
     func audioPlayerDidFinishPlaying(player: AVAudioPlayer, successfully flag: Bool) {
@@ -56,7 +55,15 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
             configureButtonsWhenReady()
         }
     }
-
+    
+    func getSoundLocalPath()-> NSURL? {
+        let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
+        let recordingName = "p5_\(RecordViewController.practiceItemX.id).wav"
+        let pathArray = [dirPath, recordingName]
+        
+        filePath = NSURL.fileURLWithPathComponents(pathArray)
+        return filePath
+    }
     @IBAction func playAudio(sender : UIButton){
         configureButtonsWhenProcessingAudio()
         audioPlayer.play()
@@ -68,13 +75,15 @@ extension RecordViewController:  AVAudioRecorderDelegate, AVAudioPlayerDelegate 
         configureButtonsWhenProcessingAudio()
 
         //Inside func recordAudio(sender: UIButton)
+        /*
         let dirPath = NSSearchPathForDirectoriesInDomains(.DocumentDirectory, .UserDomainMask, true)[0] as String
-        let recordingName = "p5.wav"
+        let recordingName = "p5_\(RecordViewController.practiceItemX.id).wav"
         let pathArray = [dirPath, recordingName]
+
         filePath = NSURL.fileURLWithPathComponents(pathArray)
-        
+        */
+        let filePath = getSoundLocalPath()
         print(filePath)
-        
         try! audioRecorder = AVAudioRecorder(URL: filePath!, settings: [:])
         
         audioRecorder.delegate = self

@@ -12,6 +12,7 @@ import CoreData
 
 class PracticeItemX : NSManagedObject {
     struct Keys {
+        static let id = "id"
         static let practiceTabForegroundTime = "practiceTabForegroundTime"
         static let metronomeUsageTime = "metronomeUsageTime"
         static let recorderUsageTime = "recorderUsageTime"
@@ -22,8 +23,10 @@ class PracticeItemX : NSManagedObject {
         static let numberOfMeasures = "numberOfMeasures"
         static let currentBpm = "currentBpm"
         static let lastRecordingLength = "lastRecordingLength"
-    }
+        static let soundLocalPath = "soundLocalPath"
 
+    }
+    @NSManaged var id: NSNumber
     @NSManaged var practiceTabForegroundTime: NSNumber
     @NSManaged var metronomeUsageTime: NSNumber
     @NSManaged var recorderUsageTime: NSNumber
@@ -34,6 +37,8 @@ class PracticeItemX : NSManagedObject {
     @NSManaged var numberOfMeasures: NSNumber
     @NSManaged var currentBpm: NSNumber
     @NSManaged var lastRecordingLength: NSNumber
+    @NSManaged var soundLocalPath: NSString
+    
     var expectedRecordingLength : Int { //seconds
         get {
             return (Int(numberOfMeasures) * Int(beatsPerMeasure) * 60 ) / Int(targetBpm)
@@ -65,7 +70,9 @@ class PracticeItemX : NSManagedObject {
         numberOfMeasures = dictionary[Keys.numberOfMeasures] as! NSNumber
         currentBpm = dictionary[Keys.currentBpm] as! NSNumber
         lastRecordingLength = dictionary[Keys.lastRecordingLength] as! NSNumber
-        
+        soundLocalPath = dictionary[Keys.soundLocalPath] as! NSString
+        id = dictionary[Keys.id] as! NSNumber
+
     }
     
 }
