@@ -57,6 +57,25 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         CoreDataStackManager.sharedInstance().saveContext()
     }
     
+    func addPracticeItem() -> PracticeItemX{
+        let dictionary = [PracticeItemX.Keys.practiceTabForegroundTime  : 0,
+            PracticeItemX.Keys.metronomeUsageTime  : 0,
+            PracticeItemX.Keys.recorderUsageTime  : 0,
+            PracticeItemX.Keys.title  : "Untitled",
+            PracticeItemX.Keys.lastPracticeDate  : NSDate() ,
+            PracticeItemX.Keys.targetBpm  : 60,
+            PracticeItemX.Keys.beatsPerMeasure  : 4,
+            PracticeItemX.Keys.numberOfMeasures  : 16,
+            PracticeItemX.Keys.currentBpm  : 40,
+            PracticeItemX.Keys.lastRecordingLength  : 0]
+        
+        let itemX = PracticeItemX(dictionary : dictionary,context: self.sharedContext)
+        CoreDataStackManager.sharedInstance().saveContext()
+        PracticeItemTableViewController.practiceItems.append(itemX)
+        RecordViewController.practiceItemX = itemX
+        Soundcloud.lastPracticeItemIndex = PracticeItemTableViewController.practiceItems.count - 1
+        return itemX
+    }
 
     override func viewWillAppear(animated: Bool) {
       //REMARK : don't use self.practiceItem
@@ -64,7 +83,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         if RecordViewController.practiceItemX != nil {
             item = RecordViewController.practiceItemX
         }else{
-            item = fetchLastPracticeItem()
+            item = fetchLastPracticeItem() ?? addPracticeItem()
         }
         if let item = item {
             RecordViewController.practiceItemX = item

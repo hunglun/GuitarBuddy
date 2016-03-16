@@ -18,6 +18,7 @@ class PracticeItemTableViewController: UIViewController {
     @IBOutlet weak var practiceItemTableView: UITableView!
     
     // MARK: Life Cycle
+
     func addPracticeItem(){
         let controller = self.storyboard!.instantiateViewControllerWithIdentifier("TabBarController") as! UITabBarController
         let dictionary = [PracticeItemX.Keys.practiceTabForegroundTime  : 0,

@@ -117,7 +117,7 @@ Ends 13th March 2016
 Sprint 10
 1. Make networking code in SCHttpRequestHelper.swift less intimidating
    - see sample code from OnTheMap [DONE]
-2. If practiceItemList is empty, execute addPracticeItem() in recordviewcontroller.viewDidLoad()
+2. If practiceItemList is empty, execute addPracticeItem() in recordviewcontroller.viewDidLoad()[DONE]
 3. Save Recording to Core Data
 End 16th March 2016
 
