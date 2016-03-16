@@ -140,7 +140,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
     }
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "save")
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Publish", style: .Plain ,target: self, action: "uploadButtonPressed")
         Soundcloud.retrieveArchivedItems()
         musicPieceTitle.delegate = self
         //metronome
@@ -156,7 +156,7 @@ class RecordViewController : UIViewController,UITextFieldDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-    @IBAction func publishButtonTouchUpInside(sender: UIButton) {
+    func uploadButtonPressed() {
         let userId = Soundcloud.userId
         let accessToken = Soundcloud.accessToken
         if userId == "" || accessToken == "" {

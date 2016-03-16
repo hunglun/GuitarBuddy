@@ -11,9 +11,17 @@ import UIKit
 
 
 class Soundcloud : NSObject {
-    static var userId : String?
+    static var userId : String? {
+        didSet {
+            saveUserAccessInfo()
+        }
+    }
     static var code : String?
-    static var accessToken: String?
+    static var accessToken: String? {
+        didSet {
+            saveUserAccessInfo()
+        }
+    }
     static var lastPracticeItemIndex : Int?  {
         didSet {
             saveUserAccessInfo()
